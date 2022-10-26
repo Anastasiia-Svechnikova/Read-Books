@@ -1,4 +1,4 @@
-import CountdownTimer from '../Timer/CountdownTimer/CountdownTimer';
+import CountdownTimer from './CountdownTimer/CountdownTimer';
 import { TimerContainer } from './Timer.styled';
 import useTranslation from 'Hooks/useTranslations';
 import { useSelector } from 'react-redux';

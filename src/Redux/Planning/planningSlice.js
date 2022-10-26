@@ -6,7 +6,7 @@ import {
 	startPlanning,
 	getCurrentPlanning,
 	addReadingPage,
-} from '../Planning/planningOperations';
+} from './planningOperations';
 
 const initialState = {
 	books: [],

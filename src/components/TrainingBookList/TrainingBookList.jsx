@@ -4,7 +4,7 @@ import {
 	List,
 	CheckBox,
 	TrashButton,
-} from '../TrainingBookList/TrainingBookList.styled';
+} from './TrainingBookList.styled';
 import {
 	booksId,
 	endDate,
