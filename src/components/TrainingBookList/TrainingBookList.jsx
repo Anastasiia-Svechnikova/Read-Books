@@ -4,45 +4,27 @@ import {
 	List,
 	CheckBox,
 	TrashButton,
-} from './TrainingBookList.styled';
+} from '../TrainingBookList/TrainingBookList.styled';
 import {
-	booksId,
-	endDate,
-	getBooks,
+	planningBooks,
 	showResultsSection,
-	startDate,
 } from 'Redux/Planning/planningSelectors';
-import { startPlanning } from 'Redux/Planning/planningOperations';
+import { deletePlanningBook} from 'Redux/Planning/planningOperations';
 import { ReactComponent as BookIcon } from 'Assets/svg/book.svg';
 import { ReactComponent as TrashIcon } from 'Assets/svg/delete.svg';
 import { ReactComponent as CheckIcon } from 'Assets/svg/CheckBox.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { clean } from 'Redux/Planning/planningSlice';
 import useTranslation from 'Hooks/useTranslations';
 import MobileTrainingBookItem from 'components/MobileTrainingBookItem/MobileTrainingBookItem';
 
 const TrainingBookList = ({isMobile}) => {
 	const translation = useTranslation();
-	let books = useSelector(getBooks);
+	let books = useSelector(planningBooks);
 	const dispatch = useDispatch();
-	const ids = useSelector(booksId);
-	const finishValue = useSelector(endDate);
-	const startValue = useSelector(startDate);
 	const isShowResultsSection = useSelector(showResultsSection);
 
-	const handleClick = _id => {
-		const del = ids.filter(id => id !== _id);
-		if (del.length === 0) {
-			dispatch(clean([]));
-			return;
-		}
-		dispatch(
-			startPlanning({
-				startDate: startValue,
-				endDate: finishValue,
-				books: del,
-			})
-		);
+	const handleDelete = _id => {
+		dispatch(deletePlanningBook(_id));
 	};
 
 	return (
@@ -68,7 +50,7 @@ const TrainingBookList = ({isMobile}) => {
 							<li key={_id}>
 								{isMobile ?
 									<MobileTrainingBookItem
-										handleDelete={handleClick}
+										handleDelete={handleDelete}
 										title={title}
 										author={author}
 										publishYear={publishYear}
@@ -97,8 +79,8 @@ const TrainingBookList = ({isMobile}) => {
 									<span>{author}</span>
 									<span>{publishYear}</span>
 									<span>{pagesTotal}</span>
-									{!isShowResultsSection && (
-										<TrashButton type='button' onClick={() => handleClick(_id)}>
+									{!isShowResultsSection && books.length > 1 &&(
+										<TrashButton type='button' onClick={() => handleDelete(_id)}>
 											<TrashIcon width={22} height={17} />
 										</TrashButton>
 									)}

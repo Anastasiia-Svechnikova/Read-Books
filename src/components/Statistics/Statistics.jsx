@@ -20,18 +20,19 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import useTranslation from 'Hooks/useTranslations';
 import {
-	selectorShowBtn,
-	selectorShowResults,
+	// selectorShowBtn,
+	// selectorShowResults,
 	selectorPlanFact,
 	selectorDuration,
 	startDate,
 	selectorReadedPages,
-	getBooks,
+	planningBooks,
+	showResultsSection,
 } from '../../Redux/Planning/planningSelectors';
 
 import {
 	showResults,
-	showStartTraningBtn,
+	// showStartTraningBtn,
 	addPlanFact,
 } from 'Redux/Planning/planningSlice';
 import { useEffect } from 'react';
@@ -40,15 +41,17 @@ import  CastomLabel from './CastomLabel/CastomLabel';
 
 
 export default function Statistics() {
+
 	const translation = useTranslation();
 
 	const data = useSelector(selectorPlanFact);
-	const isShowResultsSection = useSelector(selectorShowResults);
-	const isShowBtn = useSelector(selectorShowBtn);
+	const isShowResultsSection = useSelector(showResultsSection);
+	// const isShowBtn = useSelector(selectorShowBtn);
+	const isShowBtn = !!(useSelector(planningBooks).length)
 	const duration = useSelector(selectorDuration);
 	const getStartDate = useSelector(startDate);
 	const readedPages = useSelector(selectorReadedPages);
-	const books = useSelector(getBooks);
+	const books = useSelector(planningBooks);
 
 	const dispatch = useDispatch();
 
@@ -107,14 +110,15 @@ export default function Statistics() {
 
 
 	const handleClickStartTraining = () => {
-		dispatch(showStartTraningBtn(false));
+		// setIsShowBtn(false)
+		// dispatch(showStartTraningBtn(false));
 		dispatch(showResults(true));
 		dispatch(addPlanFact(createObjByPlan()));
 	};
 
 	return (
 		<>
-			{isShowBtn && (
+			{isShowBtn && !isShowResultsSection && (
 				<StartTraningBox>
 					<StartTraningBtn type="button" onClick={handleClickStartTraining}>
 						{translation.statistics.startBtn}

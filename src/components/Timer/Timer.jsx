@@ -1,4 +1,4 @@
-import CountdownTimer from './CountdownTimer/CountdownTimer';
+import CountdownTimer from '../Timer/CountdownTimer/CountdownTimer';
 import { TimerContainer } from './Timer.styled';
 import useTranslation from 'Hooks/useTranslations';
 import { useSelector } from 'react-redux';
@@ -33,7 +33,3 @@ const Timer = () => {
 
 export default Timer;
 
-// !___________Mail for tests____________
-
-// simpson@mail.ua
-// Simpson123123

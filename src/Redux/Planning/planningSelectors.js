@@ -1,4 +1,4 @@
-export const getBooks = state => state.planning.books;
+export const planningBooks = state => state.planning.books;
 export const booksId = state => state.planning.booksId;
 export const startDate = state => state.planning.startDate;
 export const endDate = state => state.planning.endDate;
@@ -12,4 +12,4 @@ export const selectorPagesReaded = state => state.planning.pagesReaded;
 
 //!!______________________________________________________________________
 export const showResultsSection = state => state.planning.isShowResults;
-export const selectorShowResults = state => state.planning.isShowResults;
+// export const selectorShowResults = state => state.planning.isShowResults;

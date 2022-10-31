@@ -15,7 +15,7 @@ import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserBooksThunk } from 'Redux/Books/booksOperations';
 import { startPlanning } from 'Redux/Planning/planningOperations';
-import { booksId } from 'Redux/Planning/planningSelectors';
+import { planningBooks } from 'Redux/Planning/planningSelectors';
 import { Application, DatePicker } from 'react-rainbow-components';
 import dayjs from 'dayjs';
 import { BackBtn } from 'components/Library/LibraryForm/LibraryForm.styled';
@@ -25,7 +25,8 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 
 	const books = useSelector(state => state.books.books.goingToRead);
 	const accessToken = useSelector(state => state.auth.accessToken);
-	const ids = useSelector(booksId);
+	const selectedBooks = useSelector(planningBooks);
+	const ids = selectedBooks.map(({_id})=>_id)
 	const dispatch = useDispatch();
 
 	const dateToday = `${dayjs().get('year')}-${
@@ -42,7 +43,7 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 
 	const onSubmit = e => {
 		e.preventDefault();
-		const clone = ids.some(id => id === e.currentTarget.elements.select.value);
+		const clone = selectedBooks.some(({_id}) => _id === e.currentTarget.elements.select.value);
 		if (startValue === '' || endValue === '') {
 			return Notify.warning(`${translation.myTraining.warningFields}`);
 		}

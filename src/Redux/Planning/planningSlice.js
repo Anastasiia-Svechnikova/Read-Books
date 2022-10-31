@@ -6,9 +6,11 @@ import {
 	startPlanning,
 	getCurrentPlanning,
 	addReadingPage,
-} from './planningOperations';
+	deletePlanningBook,
+} from '../Planning/planningOperations';
 
 const initialState = {
+	isPlanningActive:false,
 	books: [],
 	booksId: [],
 	startDate: '',
@@ -20,7 +22,7 @@ const initialState = {
 	isShowResults: false,
 	planFact: [],
 	isLoading: false,
-	errorMassage: false,
+	errorMessage: false,
 	readedPages: null,
 	pagesReaded: null,
 };
@@ -44,13 +46,10 @@ const planningSlice = createSlice({
 			state.booksId = [];
 			state.books = [];
 		},
-		clean(state, { payload }) {
-			state.booksId = payload;
-			state.books = payload;
-		},
 	},
 	extraReducers: {
 		[startPlanning.fulfilled](state, { payload }) {
+			state.isPlanningActive = true;
 			state.books = payload.books;
 			state.startDate = payload.startDate;
 			state.endDate = payload.endDate;
@@ -66,8 +65,16 @@ const planningSlice = createSlice({
 		},
 		[startPlanning.rejected](state) {
 			state.isLoading = false;
-			state.errorMassage = true;
+			state.errorMessage = true;
 		},
+		[deletePlanningBook.pending]:state=> {
+			state.isLoading = true;
+		},
+		[deletePlanningBook.fulfilled]:(state, {payload})=> {
+			state.isLoading = false;
+			state.books = payload.books;
+		},
+
 		[addReadingPage.pending](state) {
 			state.isLoading = true;
 		},
@@ -112,7 +119,7 @@ export const {
 const planningPersistConfig = {
 	key: 'planning',
 	storage,
-	whitelist: ['planFact', 'booksId'],
+	whitelist: ['planFact', 'booksId', 'isPlanningActive'],
 };
 
 export const persistedPlanningReducer = persistReducer(
