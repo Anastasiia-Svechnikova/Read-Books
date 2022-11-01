@@ -5,27 +5,24 @@ import Statistics from 'components/Statistics/Statistics';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getCurrentPlanning } from 'Redux/Planning/planningOperations';
-import { showResultsSection } from 'Redux/Planning/planningSelectors';
+import { getIsPlanningActive, showResultsSection } from 'Redux/Planning/planningSelectors';
 import Timer from 'components/Timer/Timer';
 import { useMediaQuery } from 'react-responsive';
 import MobileTrainingPage from 'components/MobileTrainingPage/MobileTrainingPage';
 
 const TrainingPage = () => {
+	const showResults = useSelector(showResultsSection);
 	const dispatch = useDispatch();
-
+	const isPlanningActive = useSelector(getIsPlanningActive)
 	useEffect(() => {
-		dispatch(getCurrentPlanning());
-	}, [dispatch]);
+		if (isPlanningActive) {			
+			dispatch(getCurrentPlanning());
+		}
+	}, [dispatch, isPlanningActive]);
+
+
 	const isDesktopOrTablet = useMediaQuery({ minWidth: 768 });
 
-	// const dispatch = useDispatch();
-	const showResults = useSelector(showResultsSection);
-
-	// useEffect(() => {
-	// 	if (showResults) {
-	// 		dispatch(getCurrentPlanning());
-	// 	}
-	// }, [dispatch, showResults]);
 
 	return (
 		<Section>

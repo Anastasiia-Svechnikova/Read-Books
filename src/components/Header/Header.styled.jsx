@@ -27,3 +27,4 @@ export const HeaderWrapper = styled.div`
 	align-items: center;
 	justify-content: ${AuthLocation};
 `;
+

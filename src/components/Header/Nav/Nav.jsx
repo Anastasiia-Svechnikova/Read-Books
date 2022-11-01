@@ -1,8 +1,10 @@
+import Settings from 'components/Settings/Settings';
 import { Navi, IconLink, IconLib, IconHome } from './Nav.styled';
 
 const Nav = () => {
 	return (
 		<Navi>
+			<Settings />
 			<IconLink to={'/training'} aria-label="Training link">
 				<IconLib />
 			</IconLink>

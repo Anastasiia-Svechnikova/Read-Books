@@ -16,7 +16,9 @@ const initialStateBooks = {
 export const booksSlice = createSlice({
 	name: 'books',
 	initialState: initialStateBooks,
-	reducers: {},
+	reducers: {
+		resetCurrentlyReading: state=> {state.books.currentlyReading = []}
+	},
 	extraReducers: {
 		[getUserBooksThunk.fulfilled]: (state, { payload }) => {
 			state.books.goingToRead = payload.goingToRead;
@@ -53,3 +55,4 @@ export const booksSlice = createSlice({
 		
 	},
 });
+export const {resetCurrentlyReading} = booksSlice.actions

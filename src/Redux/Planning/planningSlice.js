@@ -12,13 +12,13 @@ import {
 const initialState = {
 	isPlanningActive:false,
 	books: [],
-	booksId: [],
+	// booksId: [],
 	startDate: '',
 	endDate: '',
 	pagesPerDay: null,
 	duration: null,
 	stats: null,
-	isShowStartTraningBtn: false,
+	// isShowStartTraningBtn: false,
 	isShowResults: false,
 	planFact: [],
 	isLoading: false,
@@ -31,9 +31,9 @@ const planningSlice = createSlice({
 	name: 'planning',
 	initialState,
 	reducers: {
-		showStartTraningBtn(state, { payload }) {
-			state.isShowStartTraningBtn = payload;
-		},
+		// showStartTraningBtn(state, { payload }) {
+		// 	state.isShowStartTraningBtn = payload;
+		// },
 		showResults(state, { payload }) {
 			state.isShowResults = payload;
 		},
@@ -43,7 +43,8 @@ const planningSlice = createSlice({
 		resetPagesAndPlan(state) {
 			state.planFact = [];
 			state.isShowResults = false;
-			state.booksId = [];
+			state.isPlanningActive = false;
+			// state.booksId = [];
 			state.books = [];
 		},
 	},
@@ -55,7 +56,7 @@ const planningSlice = createSlice({
 			state.endDate = payload.endDate;
 			state.pagesPerDay = payload.pagesPerDay;
 			state.duration = payload.duration;
-			state.booksId = payload.books.map(({ _id }) => _id);
+			// state.booksId = payload.books.map(({ _id }) => _id);
 			state.stats = payload.stats;
 			state.isShowStartTraningBtn = true;
 		},
@@ -109,17 +110,16 @@ const planningSlice = createSlice({
 
 export const planningReducer = planningSlice.reducer;
 export const {
-	showStartTraningBtn,
+	// showStartTraningBtn,
 	resetPagesAndPlan,
 	showResults,
-	clean,
 	addPlanFact,
 } = planningSlice.actions;
 
 const planningPersistConfig = {
 	key: 'planning',
 	storage,
-	whitelist: ['planFact', 'booksId', 'isPlanningActive'],
+	whitelist: ['planFact','isPlanningActive'],
 };
 
 export const persistedPlanningReducer = persistReducer(

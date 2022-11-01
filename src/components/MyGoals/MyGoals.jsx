@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { booksId, showResultsSection } from 'Redux/Planning/planningSelectors';
+import { planningBooks, selectorDuration, showResultsSection } from 'Redux/Planning/planningSelectors';
 import {
 	Title,
 	MyGoalsContainer,
@@ -12,11 +12,11 @@ import {
 import useTranslation from 'Hooks/useTranslations';
 
 const MyGoals = () => {
-	const ids = useSelector(booksId);
-	const state = useSelector(state => state.planning);
+	const books = useSelector(planningBooks);
+	const duration = useSelector(selectorDuration);
 	const translation = useTranslation();
 	const isShowResultsSection = useSelector(showResultsSection);
-	const booksLefts = state.books.filter(
+	const booksLefts = books.filter(
 		({ pagesTotal, pagesFinished }) => pagesTotal !== pagesFinished
 	);
 
@@ -26,12 +26,12 @@ const MyGoals = () => {
 			{isShowResultsSection ? (
 				<List startTraining>
 					<Item startTraining>
-						<Counter startTraining>{ids.length !== 0 ? state.books.length : '0'}</Counter>
+						<Counter startTraining>{books.length !== 0 ? books.length : '0'}</Counter>
 						<Text>{translation.myGoals.text1}</Text>
 					</Item>
 					<Item startTraining>
 						<Counter startTraining>
-							{ids.length !== 0 ? state.duration : '0'}
+							{books.length !== 0 ? duration : '0'}
 						</Counter>
 						<Text>{translation.myGoals.text2}</Text>
 					</Item>
@@ -45,11 +45,11 @@ const MyGoals = () => {
 			) : (
 				<List>
 					<Item>
-						<Counter>{ids.length !== 0 ? state.books.length : '0'}</Counter>
+						<Counter>{books.length !== 0 ? books.length : '0'}</Counter>
 						<Text>{translation.myGoals.text1}</Text>
 					</Item>
 					<Item>
-						<Counter>{ids.length !== 0 ? state.duration : '0'}</Counter>
+						<Counter>{books.length !== 0 ? duration : '0'}</Counter>
 						<Text>{translation.myGoals.text2}</Text>
 					</Item>
 				</List>

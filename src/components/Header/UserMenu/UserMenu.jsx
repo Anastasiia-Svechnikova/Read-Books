@@ -12,14 +12,11 @@ const UserMenu = () => {
 
 	return (
 		<UserWrapper>
-			{isTabletOrDesktop ? (
+			{isTabletOrDesktop && 
 				<UserMeta>
 					<UserIcon>{userIcon}</UserIcon>
 					<UserName>{userName}</UserName>
-				</UserMeta>
-			) : (
-				<UserIcon>{userIcon}</UserIcon>
-			)}
+				</UserMeta>}
 		</UserWrapper>
 	);
 

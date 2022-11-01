@@ -32,6 +32,7 @@ import useTranslation from 'Hooks/useTranslations';
 import ModalFaster from './ModalsContent/ModalFaster';
 import ModalDone from './ModalsContent/ModalDone';
 import dayjs from 'dayjs';
+import { resetCurrentlyReading } from 'Redux/Books/booksSlice';
 
 export default function Results() {
 	const [isShowModal, setIsShowModal] = useState(false);
@@ -66,7 +67,7 @@ export default function Results() {
 
 	const handleFormSubmit = e => {
 		e.preventDefault();
-		const inputValue = Number(e.target.elements[1].value);
+		const inputValue = Number(e.target.elements.page.value);
 		const unreadPages = data[data.length - 1]?.plan - data[0]?.fact;
 
 		if (Number.isNaN(inputValue)) {
@@ -98,6 +99,7 @@ export default function Results() {
 	const handleDoneBtnClick = () => {
 		setIsShowModalEndReading(false);
 
+		dispatch(resetCurrentlyReading())
 		dispatch(resetPagesAndPlan());
 	};
 
