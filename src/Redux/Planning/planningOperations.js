@@ -1,5 +1,6 @@
 import API from 'Services/Api/Api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { normalizeDate } from 'components/Statistics/functions/functions';
 
 const { postPlanning, patchPlanning, getPlanning } = API;
 
@@ -20,13 +21,11 @@ export const deletePlanningBook = createAsyncThunk(
 	async (idToDelete, thunkAPI) => {
 		try {
 		const state = thunkAPI.getState()
-		const currentDate = new Date()
-		const startDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`
+		const startDate = normalizeDate(Date.now())
 		const endDate = state.planning.endDate;
 		const books = state.planning.books.filter(({ _id }) => _id !== idToDelete).map(({_id})=> _id)
 		
 		const data = await postPlanning({ startDate, endDate, books});
-		console.log(data)
 			return data;
 		} catch (e) {
 			return thunkAPI.rejectWithValue(e.message);
@@ -36,7 +35,7 @@ export const deletePlanningBook = createAsyncThunk(
 
 export const addReadingPage = createAsyncThunk(
 	'planning/addReadingPage',
-	// !==Лера изменила page на pages, не работало ==========
+
 	async ({ pages }, thunkAPI) => {
 		try {
 			const data = patchPlanning({ pages });

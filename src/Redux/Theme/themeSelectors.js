@@ -1,1 +1,1 @@
-export const getIsLightTheme = state => state.theme.theme;
+export const selectIsLightTheme = state => state.theme.theme;

@@ -1,4 +1,6 @@
+import  CustomLabel from './CustomLabel/CustomLabel';
 import Results from 'components/Results/Results';
+import useTranslation from 'Hooks/useTranslations';
 import {
 	LineChart,
 	Line,
@@ -13,52 +15,45 @@ import {
 	StatisticsBox,
 	StatisticsTitle,
 	StatisticsText,
-	StartTraningBtn,
-	StartTraningBox,
+	StartTrainingBtn,
+	StartTrainingBox,
 	StatisticDaysSpan,
 } from './Statistics.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import useTranslation from 'Hooks/useTranslations';
 import {
-	// selectorShowBtn,
-	// selectorShowResults,
-	selectorPlanFact,
-	selectorDuration,
-	startDate,
-	selectorReadedPages,
-	planningBooks,
-	showResultsSection,
+	selectPlanFact,
+	selectDuration,
+	selectStartDate,
+	selectFinishedPages,
+	selectPlanningBooks,
+	selectShowResultsSection,
 } from '../../Redux/Planning/planningSelectors';
 
 import {
 	showResults,
-	// showStartTraningBtn,
 	addPlanFact,
 } from 'Redux/Planning/planningSlice';
 import { useEffect } from 'react';
-import { createNextDay, dotsPaddingByWidth, normaliseDate } from './functions/functions';
-import  CastomLabel from './CastomLabel/CastomLabel';
+import { createNextDay, dotsPaddingByWidth, normalizeDate } from './functions/functions';
 
 
 export default function Statistics() {
 
 	const translation = useTranslation();
 
-	const data = useSelector(selectorPlanFact);
-	const isShowResultsSection = useSelector(showResultsSection);
-	// const isShowBtn = useSelector(selectorShowBtn);
-	const isShowBtn = !!(useSelector(planningBooks).length)
-	const duration = useSelector(selectorDuration);
-	const getStartDate = useSelector(startDate);
-	const readedPages = useSelector(selectorReadedPages);
-	const books = useSelector(planningBooks);
+	const data = useSelector(selectPlanFact);
+	const isShowResultsSection = useSelector(selectShowResultsSection);
+	const books = useSelector(selectPlanningBooks);
+	const isShowBtn = !!(books.length)
+	const duration = useSelector(selectDuration);
+	const getStartDate = useSelector(selectStartDate);
+	const finishedPages = useSelector(selectFinishedPages);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (readedPages) {
-			// считаем, что пришло - странички, мапаем дату и к ней в факт суем странички
-			const totalPages = readedPages.reduce(
+		if (finishedPages) {
+			const totalPages = finishedPages.reduce(
 				(total, el) => total + el.pagesCount,
 				0
 			);
@@ -73,7 +68,7 @@ export default function Statistics() {
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [readedPages]);
+	}, [finishedPages]);
 
 	const checkData =
 		data?.length > 0 && isShowResultsSection
@@ -91,7 +86,7 @@ export default function Statistics() {
 			for (let i = 1; i <= duration; i += 1) {
 			if (i === 1) {
 				objPlanFact.push({
-					name: normaliseDate(startDate),
+					name: normalizeDate(startDate),
 					fact: 0,
 					plan: Math.round(totalPagesPerDay * i),
 				});
@@ -110,8 +105,6 @@ export default function Statistics() {
 
 
 	const handleClickStartTraining = () => {
-		// setIsShowBtn(false)
-		// dispatch(showStartTraningBtn(false));
 		dispatch(showResults(true));
 		dispatch(addPlanFact(createObjByPlan()));
 	};
@@ -119,11 +112,11 @@ export default function Statistics() {
 	return (
 		<>
 			{isShowBtn && !isShowResultsSection && (
-				<StartTraningBox>
-					<StartTraningBtn type="button" onClick={handleClickStartTraining}>
+				<StartTrainingBox>
+					<StartTrainingBtn type="button" onClick={handleClickStartTraining}>
 						{translation.statistics.startBtn}
-					</StartTraningBtn>
-				</StartTraningBox>
+					</StartTrainingBtn>
+				</StartTrainingBox>
 			)}
 			<StatisticsSection>
 				<StatisticsBox>
@@ -162,12 +155,11 @@ z
 								fill="#000000"
 								activeDot={{ r: 7 }}
 								height={5}
-								// legendType="none"
 								strokeWidth={2}
 								dot={{ stroke: '#000000', strokeWidth: 4 }}
 								name="PLAN"
 							>
-								<LabelList content={<CastomLabel type="plan" checkData={ checkData} />} />
+								<LabelList content={<CustomLabel type="plan" checkData={ checkData} />} />
 							</Line>
 							<Line
 								type="monotone"
@@ -175,12 +167,11 @@ z
 								stroke="#FF6B08"
 								fill="#FF6B08"
 								activeDot={{ r: 7 }}
-								// legendType="none"
 								strokeWidth={2}
 								dot={{ stroke: '#FF6B08', strokeWidth: 4 }}
 								name="FACT"
 							>
-								<LabelList content={<CastomLabel type="fact" checkData={ checkData} />} />
+								<LabelList content={<CustomLabel type="fact" checkData={ checkData} />} />
 							</Line>
 						</LineChart>
 					</ResponsiveContainer>

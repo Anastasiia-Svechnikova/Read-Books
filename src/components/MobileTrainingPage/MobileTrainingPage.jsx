@@ -1,17 +1,18 @@
 import MyGoals from 'components/MyGoals/MyGoals';
 import MyTraining from 'components/MyTraining/MyTraining';
 import TrainingBookList from 'components/TrainingBookList/TrainingBookList';
-import { useSelector } from 'react-redux';
-import { showResultsSection } from 'Redux/Planning/planningSelectors';
 import Statistics from 'components/Statistics/Statistics';
 import Timer from 'components/Timer/Timer';
-import { Container } from 'components/StartTrainningWrapper/StartTrainningWrapper.styled';
+
+import { useSelector } from 'react-redux';
+import { selectShowResultsSection } from 'Redux/Planning/planningSelectors';
+import { Container } from 'components/StartTrainingWrapper/StartTrainingWrapper.styled';
 import { useState } from 'react';
 import { PlusBtn } from 'components/Library/MobileLibrary/MobileLibrary.styled';
 
 const MobileTrainingPage = ({ isMobile }) => {
     	const [isMyTrainingOpen, setIsMyTrainingOpen] = useState(false);
-    const showResults = useSelector(showResultsSection);
+    const showResults = useSelector(selectShowResultsSection);
     
     	const toggleMyTrainingOpen = () => {
 		setIsMyTrainingOpen(prevState => !prevState);

@@ -9,21 +9,13 @@ export const dotsPaddingByWidth = () => {
 	return -782;
 };
 
-export const normaliseDate = date => {
+export const normalizeDate = date => {
 	const newDate = new Date(date);
-	let day = newDate.getDate();
-	if (day < 10) day = '0' + day;
-
-	let month = newDate.getMonth() + 1;
-	if (month < 10) month = '0' + month;
-
-	const year = newDate.getFullYear();
-
-	return `${year}-${month}-${day}`;
+	return `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate().toString().padStart(2,'0')}`
 };
 
 export const createNextDay = (prevDate, step) => {
 	const newDate = new Date(prevDate);
 	const nextDay = newDate.setDate(newDate.getDate() + step);
-	return normaliseDate(nextDay);
+	return normalizeDate(nextDay);
 };

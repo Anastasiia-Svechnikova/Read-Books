@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-export const StartTraningBox = styled.div`
+export const StartTrainingBox = styled.div`
 	display: flex;
 	justify-content: center;
 	max-width: 958px;
 `;
 
-export const StartTraningBtn = styled.button`
+export const StartTrainingBtn = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;

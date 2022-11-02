@@ -1,6 +1,8 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Modal from 'components/Modal';
 import ResultsItem from 'components/Results/ResultsItem/ResultsItem';
+import useTranslation from 'Hooks/useTranslations';
+import ModalFaster from './ModalsContent/ModalFaster';
+import ModalDone from './ModalsContent/ModalDone';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -8,10 +10,11 @@ import {
 	getCurrentPlanning,
 } from 'Redux/Planning/planningOperations';
 import {
-	selectorPlanFact,
-	selectorReadedPages,
-	selectorPagesReaded,
+	selectPlanFact,
+	selectFinishedPages,
+	selectPagesFinished,
 } from 'Redux/Planning/planningSelectors';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import {
 	ResultsBox,
@@ -27,43 +30,39 @@ import {
 	CalenderResults,
 } from './Results.styled';
 import { useEffect } from 'react';
-import { resetPagesAndPlan } from 'Redux/Planning/planningSlice';
-import useTranslation from 'Hooks/useTranslations';
-import ModalFaster from './ModalsContent/ModalFaster';
-import ModalDone from './ModalsContent/ModalDone';
-import dayjs from 'dayjs';
 import { resetCurrentlyReading } from 'Redux/Books/booksSlice';
+import { resetPagesAndPlan } from 'Redux/Planning/planningSlice';
+import { normalizeDate } from 'components/Statistics/functions/functions';
 
 export default function Results() {
 	const [isShowModal, setIsShowModal] = useState(false);
 	const [isShowModalEndReading, setIsShowModalEndReading] = useState(false);
-	const [isdisabledBtn, setIsDisabledBtn] = useState(false);
+	const [isDisabledBtn, setIsDisabledBtn] = useState(false);
 
-	const readedPages = useSelector(selectorReadedPages);
-	const data = useSelector(selectorPlanFact);
-	const pagesFinished = useSelector(selectorPagesReaded);
+	const finishedPages = useSelector(selectFinishedPages);
+	const data = useSelector(selectPlanFact);
+	const pagesFinished = useSelector(selectPagesFinished);
 
 	const translation = useTranslation();
 
 	const dispatch = useDispatch();
-	const dateToday = `${dayjs().get('date')}-${
-		dayjs().get('month') + 1
-	}-${dayjs().get('year')}`;
+	const dateToday = normalizeDate(Date.now())
+
 	useEffect(() => {
 		const checkTotalPlan = () => {
-			const totalReadedPages = readedPages?.reduce(
+			const totalFinishedPages = finishedPages?.reduce(
 				(total, el) => total + el.pagesCount,
 				0
 			);
 
-			if (data.length > 0 && data[data.length - 1].plan === totalReadedPages) {
+			if (data.length > 0 && data[data.length - 1].plan === totalFinishedPages) {
 				setIsShowModalEndReading(true);
 				setIsDisabledBtn(true);
 			}
 		};
 
 		checkTotalPlan();
-	}, [data, dispatch, readedPages]);
+	}, [data, dispatch, finishedPages]);
 
 	const handleFormSubmit = e => {
 		e.preventDefault();
@@ -119,7 +118,7 @@ export default function Results() {
 							<ResultsInput type="text" name="page" />
 						</ResultsLabel>
 					</FormBox>
-					<ResultsBtn type="submit" disabled={isdisabledBtn}>
+					<ResultsBtn type="submit" disabled={isDisabledBtn}>
 						{translation.results.btn}
 					</ResultsBtn>
 				</ResultsForm>
@@ -127,8 +126,8 @@ export default function Results() {
 					<StatisticsPageTitle>{translation.results.stat}</StatisticsPageTitle>
 				</StatisticsPageBox>
 				<ResultsPageList>
-					{readedPages &&
-						readedPages.map((el, i) => <ResultsItem key={i} data={el} />)}
+					{finishedPages &&
+						finishedPages.map((el, i) => <ResultsItem key={i} data={el} />)}
 				</ResultsPageList>
 			</ResultsBox>
 			{isShowModal && (
@@ -139,7 +138,7 @@ export default function Results() {
 			{isShowModalEndReading && (
 				<Modal
 					onClose={() => setIsShowModalEndReading(false)}
-					offBackdrop={isdisabledBtn}
+					offBackdrop={isDisabledBtn}
 				>
 					<ModalDone onClose={handleDoneBtnClick} />
 				</Modal>

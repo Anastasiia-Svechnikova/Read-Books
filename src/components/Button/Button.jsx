@@ -1,9 +1,9 @@
 import React from 'react';
-import { Mybutton } from './Button.styled';
+import { MyButton } from './Button.styled';
 
 const Button = ({ children, title, onClick, type, disabled, id, primary }) => {
 	return (
-		<Mybutton
+		<MyButton
 			onClick={onClick}
 			type={type}
 			disabled={disabled}
@@ -11,7 +11,7 @@ const Button = ({ children, title, onClick, type, disabled, id, primary }) => {
 			primary={primary}
 		>
 			{title || children}
-		</Mybutton>
+		</MyButton>
 	);
 };
 

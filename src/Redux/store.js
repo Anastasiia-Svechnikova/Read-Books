@@ -10,7 +10,6 @@ import {
 } from 'redux-persist';
 import { persistedAuthReducer } from './Auth/authSlice';
 import { persistedPlanningReducer } from './Planning/planningSlice';
-import { userReducer } from './User/userSlice';
 import { booksSlice } from './Books/booksSlice';
 import { persisistedThemeReducer } from './Theme/themeSlice';
 
@@ -19,7 +18,6 @@ export const store = configureStore({
 		auth: persistedAuthReducer,
 		books: booksSlice.reducer,
 		planning: persistedPlanningReducer,
-		user: userReducer,
 		theme: persisistedThemeReducer,
 	},
 	middleware: getDefaultMiddleware =>

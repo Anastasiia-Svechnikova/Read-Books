@@ -20,7 +20,7 @@ export const IconLink = styled(NavLink)`
 	}
 `;
 
-export const Navi = styled.div`
+export const StyledNav = styled.div`
 	display: flex;
 	align-items: center;
 	padding: 0px 8px;

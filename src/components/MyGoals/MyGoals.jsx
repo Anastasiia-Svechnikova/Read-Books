@@ -1,6 +1,7 @@
 import React from 'react';
+import useTranslation from 'Hooks/useTranslations';
 import { useSelector } from 'react-redux';
-import { planningBooks, selectorDuration, showResultsSection } from 'Redux/Planning/planningSelectors';
+import { selectPlanningBooks, selectDuration, selectShowResultsSection } from 'Redux/Planning/planningSelectors';
 import {
 	Title,
 	MyGoalsContainer,
@@ -9,13 +10,12 @@ import {
 	Text,
 	Item,
 } from './MyGoals.styled';
-import useTranslation from 'Hooks/useTranslations';
 
 const MyGoals = () => {
-	const books = useSelector(planningBooks);
-	const duration = useSelector(selectorDuration);
+	const books = useSelector(selectPlanningBooks);
+	const duration = useSelector(selectDuration);
 	const translation = useTranslation();
-	const isShowResultsSection = useSelector(showResultsSection);
+	const isShowResultsSection = useSelector(selectShowResultsSection);
 	const booksLefts = books.filter(
 		({ pagesTotal, pagesFinished }) => pagesTotal !== pagesFinished
 	);

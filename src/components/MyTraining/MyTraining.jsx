@@ -1,3 +1,6 @@
+import useTranslation from 'Hooks/useTranslations';
+import Button from 'components/Button/Button';
+
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as BackArrow } from 'Assets/svg/backArrow.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -10,14 +13,11 @@ import {
 	CalenderThumb,
 	DateIcon,
 } from './MyTraining.styled';
-import useTranslation from 'Hooks/useTranslations';
-import Button from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserBooksThunk } from 'Redux/Books/booksOperations';
 import { startPlanning } from 'Redux/Planning/planningOperations';
-import { planningBooks } from 'Redux/Planning/planningSelectors';
+import { selectPlanningBooks } from 'Redux/Planning/planningSelectors';
 import { Application, DatePicker } from 'react-rainbow-components';
-import dayjs from 'dayjs';
 import { BackBtn } from 'components/Library/LibraryForm/LibraryForm.styled';
 
 const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
@@ -25,13 +25,11 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 
 	const books = useSelector(state => state.books.books.goingToRead);
 	const accessToken = useSelector(state => state.auth.accessToken);
-	const selectedBooks = useSelector(planningBooks);
+	const selectedBooks = useSelector(selectPlanningBooks);
 	const ids = selectedBooks.map(({_id})=>_id)
 	const dispatch = useDispatch();
-
-	const dateToday = `${dayjs().get('year')}-${
-		dayjs().get('month') + 1
-	}-${dayjs().get('date')}`;
+	const currentDate = new Date()
+	const dateToday = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate().toString().padStart(2,'0')}`
 	const [startValue, setStartValue] = useState('');
 	const [endValue, setEndValue] = useState('');
 

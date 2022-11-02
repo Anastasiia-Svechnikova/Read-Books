@@ -1,17 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { BtnBox, ModalBox, ModalText, ResultsBtn } from '../Results.styled';
-import { ReactComponent as OkeyDone } from 'Assets/svg/okeyDone.svg';
 import useTranslation from 'Hooks/useTranslations';
+
+import { BtnBox, ModalBox, ModalText, ResultsBtn } from '../Results.styled';
+import { ReactComponent as OkDone } from 'Assets/svg/okeyDone.svg';
 
 const ModalDone = ({ onClose }) => {
 	const translation = useTranslation();
 	return (
 		<ModalBox>
-			<OkeyDone />
-
+			<OkDone />
 			<ModalText>{translation.modalDone.text}</ModalText>
-
 			<BtnBox>
 				<ResultsBtn type="button" onClick={onClose}>
 					{translation.modalDone.btnDone}
@@ -19,10 +17,6 @@ const ModalDone = ({ onClose }) => {
 			</BtnBox>
 		</ModalBox>
 	);
-};
-
-ModalDone.propTypes = {
-	onClose: PropTypes.func.isRequired,
 };
 
 export default ModalDone;

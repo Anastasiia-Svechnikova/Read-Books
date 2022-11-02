@@ -1,17 +1,11 @@
-import { useMediaQuery } from 'react-responsive';
-import MobilPage from 'components/MobilPage';
+import MobilePage from 'components/MobilePage/MobilePage';
 import LoginPage from 'Pages/LogInPage/LogInPage';
+import { useMediaQuery } from 'react-responsive';
 
 export default function HomePage() {
 	const isTablet = useMediaQuery({
 		query: '(min-width: 768px)',
 	});
 
-	return <>{isTablet ? <LoginPage /> : <MobilPage />}</>;
+	return <>{isTablet ? <LoginPage /> : <MobilePage />}</>;
 }
-
-//!! import NotFound from './NotFound';
-
-// const HomePage = () => {
-// 	return <NotFound />;
-// };

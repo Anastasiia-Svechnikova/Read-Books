@@ -1,11 +1,11 @@
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
+import Spinner from 'components/Spinner/Spinner';
+
 import { Main } from './Layout.styled';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
-import Spinner from 'components/Spinner/Spinner';
 
-// import SpinnerBoook from 'components/Spinner/SpinnerBook';
 
 const Layout = () => {
 	return (
@@ -14,7 +14,6 @@ const Layout = () => {
 			<Main>
 				<Suspense
 					fallback={
-						// <SpinnerBoook />
 						<Spinner />
 					}
 				>

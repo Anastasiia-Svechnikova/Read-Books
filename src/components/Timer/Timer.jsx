@@ -1,12 +1,12 @@
+import useTranslation from 'Hooks/useTranslations';
 import CountdownTimer from '../Timer/CountdownTimer/CountdownTimer';
 import { TimerContainer } from './Timer.styled';
-import useTranslation from 'Hooks/useTranslations';
 import { useSelector } from 'react-redux';
-import { endDate } from 'Redux/Planning/planningSelectors';
+import { selectEndDate } from 'Redux/Planning/planningSelectors';
 
 const Timer = () => {
 	const translation = useTranslation();
-	const endDateTimer = useSelector(endDate);
+	const endDateTimer = useSelector(selectEndDate);
 	const GET_EN_YEAR = new Date().getFullYear() + '-12-31';
 
 	const userOffset = new Date().getTimezoneOffset() * 60 * 1000;

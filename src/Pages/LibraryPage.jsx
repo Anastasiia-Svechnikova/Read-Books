@@ -10,25 +10,25 @@ import BOOK_CATEGORY from 'components/Constants/bookCategories';
 
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAccessToken } from 'Redux/Auth/authSelectors';
+import { selectAccessToken } from 'Redux/Auth/authSelectors';
 import { useEffect } from 'react';
 import { getUserBooksThunk } from 'Redux/Books/booksOperations';
-import { getAllBooks, getBooksStatus } from 'Redux/Books/booksSelectors';
+import { selectAllBooks, selectBooksStatus } from 'Redux/Books/booksSelectors';
 import { getCurrentPlanning } from 'Redux/Planning/planningOperations';
-import { getIsPlanningActive } from 'Redux/Planning/planningSelectors';
+import { selectIsPlanningActive } from 'Redux/Planning/planningSelectors';
 
 
 const LibraryPage = () => {
 	const translation = useTranslation();
 	const isDesktopOrTablet = useMediaQuery({ minWidth: 768 });
-	const status = useSelector(getBooksStatus);
-	const accessToken = useSelector(getAccessToken);
-	const isPlanningActive = useSelector(getIsPlanningActive);
+	const status = useSelector(selectBooksStatus);
+	const accessToken = useSelector(selectAccessToken);
+	const isPlanningActive = useSelector(selectIsPlanningActive);
 	
 
 	const isLoading = status === STATUS.pending;
 	const dispatch = useDispatch();
-	const allBooks = useSelector(getAllBooks);
+	const allBooks = useSelector(selectAllBooks);
 
 	const isLibraryEmpty =
 		Object.values(allBooks).every(el => el.length === 0) &&
@@ -37,8 +37,8 @@ const LibraryPage = () => {
 	useEffect(() => {
 		if (accessToken) {
 			dispatch(getUserBooksThunk());
-			if (isPlanningActive )
-			{ dispatch(getCurrentPlanning()); }
+			if (isPlanningActive){
+			 dispatch(getCurrentPlanning()); }
 		}
 	}, [accessToken, dispatch, isPlanningActive]);
 

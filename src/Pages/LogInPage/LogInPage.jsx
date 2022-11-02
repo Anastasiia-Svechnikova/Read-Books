@@ -1,5 +1,7 @@
 import UserForm from 'components/UserForm';
 import useLoginUser from 'Hooks/useLoginUser';
+import useTranslation from 'Hooks/useTranslations';
+
 import { userLoginSchema } from 'Utils/validSchema';
 import {
 	GoogleButton,
@@ -12,7 +14,6 @@ import {
 	Mark,
 	Border,
 } from './LogInPage.styled';
-import useTranslation from 'Hooks/useTranslations';
 
 function LoginPage() {
 	const translation = useTranslation();

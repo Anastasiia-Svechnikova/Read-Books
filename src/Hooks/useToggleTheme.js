@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { getIsLightTheme } from 'Redux/Theme/themeSelectors';
+import { selectIsLightTheme } from 'Redux/Theme/themeSelectors';
 
-const useToggleTheme = () => useSelector(getIsLightTheme);
+const useToggleTheme = () => useSelector(selectIsLightTheme);
 
 export default useToggleTheme;

@@ -1,3 +1,5 @@
+import useTranslation from 'Hooks/useTranslations';
+import MobileTrainingBookItem from 'components/MobileTrainingBookItem/MobileTrainingBookItem';
 import {
 	ItemWrapper,
 	ListHeaders,
@@ -6,22 +8,21 @@ import {
 	TrashButton,
 } from '../TrainingBookList/TrainingBookList.styled';
 import {
-	planningBooks,
-	showResultsSection,
+	selectPlanningBooks,
+	selectShowResultsSection,
 } from 'Redux/Planning/planningSelectors';
 import { deletePlanningBook} from 'Redux/Planning/planningOperations';
 import { ReactComponent as BookIcon } from 'Assets/svg/book.svg';
 import { ReactComponent as TrashIcon } from 'Assets/svg/delete.svg';
 import { ReactComponent as CheckIcon } from 'Assets/svg/CheckBox.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import useTranslation from 'Hooks/useTranslations';
-import MobileTrainingBookItem from 'components/MobileTrainingBookItem/MobileTrainingBookItem';
 
 const TrainingBookList = ({isMobile}) => {
 	const translation = useTranslation();
-	let books = useSelector(planningBooks);
 	const dispatch = useDispatch();
-	const isShowResultsSection = useSelector(showResultsSection);
+	
+	const books = useSelector(selectPlanningBooks);
+	const isShowResultsSection = useSelector(selectShowResultsSection);
 
 	const handleDelete = _id => {
 		dispatch(deletePlanningBook(_id));
@@ -65,14 +66,7 @@ const TrainingBookList = ({isMobile}) => {
 									)}
 									{isShowResultsSection && (
 										<CheckBox>
-											{pagesFinished === pagesTotal ? (
-												<input type="checkbox" id={_id} checked disabled />
-											) : (
-												<input type="checkbox" id={_id} disabled />
-											)}
-											<label htmlFor={_id}>
-												<CheckIcon />
-											</label>
+													{pagesFinished >= pagesTotal && <CheckIcon/>}
 										</CheckBox>
 									)}
 									<span>{title}</span>

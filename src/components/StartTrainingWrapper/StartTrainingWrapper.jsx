@@ -1,16 +1,16 @@
 import MyGoals from 'components/MyGoals/MyGoals';
 import MyTraining from 'components/MyTraining/MyTraining';
 import TrainingBookList from 'components/TrainingBookList/TrainingBookList';
+
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { showResultsSection } from 'Redux/Planning/planningSelectors';
-import { Container } from './StartTrainningWrapper.styled';
+import { selectShowResultsSection } from 'Redux/Planning/planningSelectors';
+import { Container } from './StartTrainingWrapper.styled';
 
-// import { useSelector } from 'react-redux';
 
-const StartTrainningWrapper = () => {
+const StartTrainingWrapper = () => {
 	const isDesktopOrTablet = useMediaQuery({ minWidth: 768 });
-	const isShowResultsSection = useSelector(showResultsSection);
+	const isShowResultsSection = useSelector(selectShowResultsSection);
 	return (
 		<Container>
 			<div>
@@ -22,4 +22,4 @@ const StartTrainningWrapper = () => {
 	);
 };
 
-export default StartTrainningWrapper;
+export default StartTrainingWrapper;

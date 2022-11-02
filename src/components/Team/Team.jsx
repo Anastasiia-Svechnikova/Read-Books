@@ -1,3 +1,14 @@
+
+import NikitaPhoto from '../../Assets/img/TeamPhoto/Nikita.jpg';
+import RenatPhoto from '../../Assets/img/TeamPhoto/Renat.jpg';
+import OlehPhoto from '../../Assets/img/TeamPhoto/Oleh.jpeg';
+import TanyaPhoto from '../../Assets/img/TeamPhoto/Tanya.jpg';
+import PavloPhoto from '../../Assets/img/TeamPhoto/Pavlo.jpeg';
+import ValeriyaPhoto from '../../Assets/img/TeamPhoto/Valeriya.jpeg';
+import MaxPhoto from '../../Assets/img/TeamPhoto/Max.jpeg';
+import AnastasiiaPhoto from '../../Assets/img/TeamPhoto/Anastasiia.jpeg';
+import useTranslation from 'Hooks/useTranslations';
+
 import { Section } from 'components/Common/Common.styled';
 import {
 	Container,
@@ -11,16 +22,6 @@ import {
 	Button,
 } from './Team.styled';
 import { useNavigate } from 'react-router-dom';
-
-import NikitaPhoto from '../../Assets/img/TeamPhoto/Nikita.jpg';
-import RenatPhoto from '../../Assets/img/TeamPhoto/Renat.jpg';
-import OlehPhoto from '../../Assets/img/TeamPhoto/Oleh.jpeg';
-import TanyaPhoto from '../../Assets/img/TeamPhoto/Tanya.jpg';
-import PavloPhoto from '../../Assets/img/TeamPhoto/Pavlo.jpeg';
-import ValeriyaPhoto from '../../Assets/img/TeamPhoto/Valeriya.jpeg';
-import MaxPhoto from '../../Assets/img/TeamPhoto/Max.jpeg';
-import AnastasiiaPhoto from '../../Assets/img/TeamPhoto/Anastasiia.jpeg';
-import useTranslation from 'Hooks/useTranslations';
 
 const TeamPage = () => {
 	const navigate = useNavigate();

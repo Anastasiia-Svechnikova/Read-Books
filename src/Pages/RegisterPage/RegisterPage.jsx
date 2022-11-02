@@ -1,6 +1,7 @@
-import { useMediaQuery } from 'react-responsive';
 import UserForm from 'components/UserForm';
 import userRegisterUser from 'Hooks/useRegisterUser';
+import useTranslation from 'Hooks/useTranslations';
+
 import { userRegisterSchema } from 'Utils/validSchema';
 import {
 	Wrapper,
@@ -12,7 +13,7 @@ import {
 	Subtitle,
 	ListItem,
 } from './RegisterPage.styled';
-import useTranslation from 'Hooks/useTranslations';
+import { useMediaQuery } from 'react-responsive';
 
 function RegisterPage() {
 	const translation = useTranslation();

@@ -33,7 +33,9 @@ export const booksSlice = createSlice({
 			state.status = STATUS.pending
 		},
 		[getCurrentPlanning.fulfilled]: (state, { payload }) => {
-			state.books.currentlyReading = payload.planning.books;
+			// const goingToReadIds = state.books.goingToRead.map(({ _id }) => _id)
+			// const goingToReadIds = state.books.goingToRead.map(({ _id }) => _id)
+			state.books.currentlyReading = payload.planning.books
 			state.status = STATUS.fulfilled
 		},
 		[getUserBooksThunk.rejected]: state => {

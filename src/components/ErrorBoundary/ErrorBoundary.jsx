@@ -1,5 +1,4 @@
 import NotFoundComponent from 'components/NotFound/NotFoundComponent';
-import PropTypes from 'prop-types';
 import { Component } from 'react';
 
 export default class ErrorBoundary extends Component {
@@ -17,6 +16,3 @@ export default class ErrorBoundary extends Component {
 	}
 }
 
-ErrorBoundary.propTypes = {
-	children: PropTypes.node,
-};

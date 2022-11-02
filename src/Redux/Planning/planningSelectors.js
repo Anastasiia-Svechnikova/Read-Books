@@ -1,16 +1,11 @@
-export const planningBooks = state => state.planning.books;
-export const getIsPlanningActive = state => state.planning.isPlanningActive;
-// export const booksId = state => state.planning.booksId;
-export const startDate = state => state.planning.startDate;
-export const endDate = state => state.planning.endDate;
-// export const selectorShowBtn = state => state.planning.isShowStartTraningBtn;
-export const selectorPlanFact = state => state.planning.planFact;
-export const getIsLoadingPlanning = state => state.planning.isLoading;
-export const selectorDuration = state => state.planning.duration;
-export const selectorPagesPerDay = state => state.planning.pagesPerDay;
-export const selectorReadedPages = state => state.planning.readedPages;
-export const selectorPagesReaded = state => state.planning.pagesReaded;
-
-//!!______________________________________________________________________
-export const showResultsSection = state => state.planning.isShowResults;
-// export const selectorShowResults = state => state.planning.isShowResults;
+export const selectPlanningBooks = state => state.planning.books;
+export const selectIsPlanningActive = state => state.planning.isPlanningActive;
+export const selectStartDate = state => state.planning.startDate;
+export const selectEndDate = state => state.planning.endDate;
+export const selectPlanFact = state => state.planning.planFact;
+export const selectIsLoadingPlanning = state => state.planning.isLoading;
+export const selectDuration = state => state.planning.duration;
+export const selectPagesPerDay = state => state.planning.pagesPerDay;
+export const selectFinishedPages = state => state.planning.readedPages;
+export const selectPagesFinished = state => state.planning.pagesReaded;
+export const selectShowResultsSection = state => state.planning.isShowResults;

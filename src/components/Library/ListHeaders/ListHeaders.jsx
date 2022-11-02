@@ -1,5 +1,6 @@
-import { Headers } from './ListHeader.styled';
 import useTranslation from 'Hooks/useTranslations';
+
+import { Headers } from './ListHeader.styled';
 
 const ListHeaders = () => {
 	const translation = useTranslation();

@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import useTranslation from 'Hooks/useTranslations';
+
 import {
 	BtnBox,
 	ModalBox,
@@ -7,9 +8,8 @@ import {
 	ResultsBackBtn,
 	ResultsBtn,
 } from '../Results.styled';
-import { ReactComponent as Okey } from 'Assets/svg/okey.svg';
+import { ReactComponent as Ok } from 'Assets/svg/okey.svg';
 import { useNavigate } from 'react-router-dom';
-import useTranslation from 'Hooks/useTranslations';
 
 const ModalFaster = ({ onClose }) => {
 	const translation = useTranslation();
@@ -17,7 +17,7 @@ const ModalFaster = ({ onClose }) => {
 
 	return (
 		<ModalBox>
-			<Okey />
+			<Ok />
 			<ModalText>{translation.modalFaster.text}</ModalText>
 
 			<BtnBox>
@@ -30,10 +30,6 @@ const ModalFaster = ({ onClose }) => {
 			</BtnBox>
 		</ModalBox>
 	);
-};
-
-ModalFaster.propTypes = {
-	onClose: PropTypes.func.isRequired,
 };
 
 export default ModalFaster;

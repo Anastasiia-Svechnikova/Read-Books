@@ -1,15 +1,17 @@
 import BOOK_CATEGORY from 'components/Constants/bookCategories';
+
+import useTranslation from 'Hooks/useTranslations';
 import MobileLibraryItem from '../MobileLibraryItem/MobileLibraryItem';
 import LibraryItem from '../LibraryItem/LibraryItem';
+import ListHeaders from '../ListHeaders/ListHeaders';
+import FinishedReadingListHeaders from '../FinishedReadingListHeaders/FinishedReadingListHeaders';
+
 import { Container, Section } from 'components/Common/Common.styled';
 import { useMediaQuery } from 'react-responsive';
 import { Header } from './LibraryList.styled';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { getBooksByCategory } from 'Redux/Books/booksSelectors';
-import ListHeaders from '../ListHeaders/ListHeaders';
-import FinishedReadingListHeaders from '../FinishedReadingListHeaders/FinishedReadingListHeaders';
-import useTranslation from 'Hooks/useTranslations';
+import { selectBooksByCategory } from 'Redux/Books/booksSelectors';
 
 const LibraryList = ({ category }) => {
 	const translation = useTranslation();
@@ -19,7 +21,7 @@ const LibraryList = ({ category }) => {
 		[category]
 	);
 
-	const books = useSelector(getBooksByCategory(category));
+	const books = useSelector(selectBooksByCategory(category));
 	const isFinishedReadingList = category === BOOK_CATEGORY.finishedReading;
 
 	return (

@@ -1,3 +1,6 @@
+import NotFoundPicSmall from '../../Assets/png/404-img.png';
+import useTranslation from 'Hooks/useTranslations';
+
 import { Section } from 'components/Common/Common.styled';
 import {
 	Img,
@@ -7,9 +10,7 @@ import {
 	Title,
 	Text,
 } from './NotFoundComponent.styled';
-import useTranslation from 'Hooks/useTranslations';
 
-import NotFoundPicSmall from '../../Assets/png/404-img.png';
 
 const NotFoundComponent = () => {
 	const translation = useTranslation();

@@ -1,5 +1,6 @@
-import { Headers } from './FinishedReadingListHeaders.styled';
 import useTranslation from 'Hooks/useTranslations';
+
+import { Headers } from './FinishedReadingListHeaders.styled';
 
 const FinishedReadingListHeaders = () => {
 	const translation = useTranslation();

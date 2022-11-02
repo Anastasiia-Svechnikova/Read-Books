@@ -18,7 +18,7 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		qwe(state, { payload }) {
+		googleAuth(state, { payload }) {
 			state.accessToken = payload.accessToken;
 			state.refreshToken = payload.refreshToken;
 			state.sid = payload.sid;
@@ -89,7 +89,7 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
-export const { qwe } = authSlice.actions;
+export const { googleAuth } = authSlice.actions;
 
 const authPersistConfig = {
 	key: 'auth',

@@ -1,8 +1,9 @@
+import RatingStars from './RatingStars';
+import useTranslation from 'Hooks/useTranslations';
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBookReview } from 'Redux/Books/booksOperations';
-import RatingStars from './RatingStars';
-import useTranslation from 'Hooks/useTranslations';
 import {
 	ButtonBackS,
 	ButtonContainerS,

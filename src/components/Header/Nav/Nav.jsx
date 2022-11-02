@@ -1,9 +1,9 @@
 import Settings from 'components/Settings/Settings';
-import { Navi, IconLink, IconLib, IconHome } from './Nav.styled';
+import { StyledNav, IconLink, IconLib, IconHome } from './Nav.styled';
 
 const Nav = () => {
 	return (
-		<Navi>
+		<StyledNav>
 			<Settings />
 			<IconLink to={'/training'} aria-label="Training link">
 				<IconLib />
@@ -11,7 +11,7 @@ const Nav = () => {
 			<IconLink to={'/library'} aria-label="Library link">
 				<IconHome />
 			</IconLink>
-		</Navi>
+		</StyledNav>
 	);
 };
 export default Nav;

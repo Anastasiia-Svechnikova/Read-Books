@@ -17,6 +17,6 @@ export const ThemeButton = styled.button`
 export const LightIcon = styled(LightThemeIcon)`
 	fill: ${p => p.theme.colors.icon};
 `;
-export const DarktIcon = styled(DarkThemeIcon)`
+export const DarkIcon = styled(DarkThemeIcon)`
 	fill: ${p => p.theme.colors.icon};
 `;

@@ -1,3 +1,5 @@
+import useTranslation from 'Hooks/useTranslations';
+
 import { ReactComponent as BookIcon } from 'Assets/svg/book.svg';
 import { ReactComponent as VectorIcon } from 'Assets/svg/vector.svg';
 import { ReactComponent as FlagIcon } from 'Assets/svg/flag.svg';
@@ -8,7 +10,6 @@ import {
 	Title,
 	Wrapper,
 } from './EmptyLibraryInfo.styled';
-import useTranslation from 'Hooks/useTranslations';
 
 const EmptyLibraryInfo = ({ openFormHandler = null }) => {
 	const translation = useTranslation();

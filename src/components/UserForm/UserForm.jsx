@@ -1,5 +1,5 @@
-import { Formik, Form } from 'formik';
 import userInput from 'components/UserFormItem';
+import { Formik, Form } from 'formik';
 import {
 	Page,
 	FormBox,
@@ -18,7 +18,6 @@ export default function UserForm({
 	text,
 	variant,
 }) {
-	// UserForm
 	return (
 		<Page>
 			<FormBox>

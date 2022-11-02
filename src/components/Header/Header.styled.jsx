@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'Redux/Auth/authSelectors';
+import { selectIsLoggedIn } from 'Redux/Auth/authSelectors';
 
 const AuthLocation = () => {
-	const isLoggedIn = useSelector(getIsLoggedIn);
+	const isLoggedIn = useSelector(selectIsLoggedIn);
 	return isLoggedIn ? 'space-between' : 'center';
 };
 

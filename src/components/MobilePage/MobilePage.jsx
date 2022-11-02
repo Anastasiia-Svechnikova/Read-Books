@@ -1,7 +1,8 @@
+import useTranslation from 'Hooks/useTranslations';
+
 import { NavLink } from 'react-router-dom';
 import { Container } from 'components/Common/Common.styled';
 import { ReactComponent as AngleQuote } from 'Assets/svg/angleQuote.svg';
-import useTranslation from 'Hooks/useTranslations';
 import {
 	Section,
 	Title,
@@ -14,9 +15,9 @@ import {
 	MainListItem,
 	Text,
 	IconWrapper,
-} from './MobilPage.styled';
+} from './MobilePage.styled';
 
-export default function MobilPage() {
+export default function MobilePage() {
 	const translation = useTranslation();
 	return (
 		<Container>

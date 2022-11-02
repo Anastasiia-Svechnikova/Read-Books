@@ -1,9 +1,10 @@
+import useTranslation from 'Hooks/useTranslations';
+
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { LogoutBtn } from './LogOutBtn.styled';
 import { logOut } from 'Redux/Auth/authOperation';
-import useTranslation from 'Hooks/useTranslations';
 import {ReactComponent as LeaveIcon} from  'Assets/svg/leave.svg';
 
 const LogOutBtn = () => {

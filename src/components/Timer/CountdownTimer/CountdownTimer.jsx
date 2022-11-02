@@ -1,7 +1,7 @@
+import useTranslation from 'Hooks/useTranslations';
 import React from 'react';
 import DateTimeDisplay from './DateTimeDisplay/DateTimeDisplay';
 import { useCountdown } from 'Hooks/useCountdown';
-import useTranslation from 'Hooks/useTranslations';
 
 import { Wrap, Counter, Title, Dots } from './CountdownTimer.styled.jsx';
 

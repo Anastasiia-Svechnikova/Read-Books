@@ -1,5 +1,6 @@
 import createRatingStars from 'Utils/RatingStars';
 import Modal from 'components/Modal';
+
 import { ReactComponent as BookIcon } from 'Assets/svg/book.svg';
 import {
 	Button,

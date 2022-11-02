@@ -1,7 +1,6 @@
 import useTranslation from 'Hooks/useTranslations';
-import PropTypes from 'prop-types'
 
-const CastomLabel = ({ x, y, index, type, checkData=null }) => {
+const CustomLabel = ({ x, y, index, type, checkData=null }) => {
 	const translation = useTranslation();
 	
    
@@ -24,12 +23,6 @@ const CastomLabel = ({ x, y, index, type, checkData=null }) => {
 	}
 };
 
-CastomLabel.propTypes = {
-	x: PropTypes.number,
-	y: PropTypes.number,
-	index: PropTypes.number,
-	type: PropTypes.string.isRequired,
-	checkData: PropTypes.array.isRequired,
-}
 
-export default CastomLabel
+
+export default CustomLabel

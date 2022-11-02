@@ -1,3 +1,7 @@
+import useTranslation from 'Hooks/useTranslations';
+import Modal from 'components/Modal';
+import createRatingStars from 'Utils/RatingStars';
+
 import {
 	MobileItemWrapper,
 	IconThumb,
@@ -12,11 +16,8 @@ import {
 	OverflowText,
 	StarList,
 } from '../LibraryItem/LibraryItem.styled';
-import createRatingStars from 'Utils/RatingStars';
 import { useState } from 'react';
-import Modal from 'components/Modal';
 import { ResumeModal } from 'components/ResumeModal/ResumeModal';
-import useTranslation from 'Hooks/useTranslations';
 
 const MobileLibraryItem = ({
 	title,
