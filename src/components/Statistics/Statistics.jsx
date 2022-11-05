@@ -1,20 +1,20 @@
-import  CustomLabel from './CustomLabel/CustomLabel';
+// import  CustomLabel from './CustomLabel/CustomLabel';
 import Results from 'components/Results/Results';
 import useTranslation from 'Hooks/useTranslations';
 import {
-	LineChart,
-	Line,
-	XAxis,
-	CartesianGrid,
-	Tooltip,
-	LabelList,
-	ResponsiveContainer,
+	// LineChart,
+	// Line,
+	// XAxis,
+	// CartesianGrid,
+	// Tooltip,
+	// LabelList,
+	// ResponsiveContainer,
 } from 'recharts';
 import {
 	StatisticsSection,
 	StatisticsBox,
 	StatisticsTitle,
-	StatisticsText,
+	// StatisticsText,
 	StartTrainingBtn,
 	StartTrainingBox,
 	StatisticDaysSpan,
@@ -35,6 +35,7 @@ import {
 } from 'Redux/Planning/planningSlice';
 import { useEffect } from 'react';
 import { createNextDay, dotsPaddingByWidth, normalizeDate } from './functions/functions';
+import StatisticsChart from './StatisticsChart/StatisticsChart';
 
 
 export default function Statistics() {
@@ -70,10 +71,10 @@ export default function Statistics() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [finishedPages]);
 
-	const checkData =
-		data?.length > 0 && isShowResultsSection
-			? data
-			: [{ name: 'Day 0', fact: 5, plan: 10 }];
+	// const checkData =
+	// 	data?.length > 0 && isShowResultsSection
+	// 		? data
+	// 		: [{ name: 'Day 0', fact: 5, plan: 10 }];
 
 	const createObjByPlan = () => {
 		const startDate = new Date(getStartDate);
@@ -84,7 +85,8 @@ export default function Statistics() {
 			const objPlanFact = [];
 
 			for (let i = 1; i <= duration; i += 1) {
-			if (i === 1) {
+				if (i === 1) {
+				console.log(normalizeDate(startDate))
 				objPlanFact.push({
 					name: normalizeDate(startDate),
 					fact: 0,
@@ -124,7 +126,8 @@ export default function Statistics() {
 						{translation.statistics.statTitle}
 						<StatisticDaysSpan> {data[0]?.plan ? data[0]?.plan : 0}</StatisticDaysSpan>
 					</StatisticsTitle>
-					<ResponsiveContainer width={'99%'} height={215}>
+					<StatisticsChart/>
+					{/* <ResponsiveContainer width={'99%'} height={215}>
 						<LineChart
 							width={809}
 							height={215}
@@ -174,8 +177,8 @@ z
 								<LabelList content={<CustomLabel type="fact" checkData={ checkData} />} />
 							</Line>
 						</LineChart>
-					</ResponsiveContainer>
-					<StatisticsText>{translation.statistics.time}</StatisticsText>
+					</ResponsiveContainer>*/}
+					{/* <StatisticsText>{translation.statistics.time}</StatisticsText>  */}
 				</StatisticsBox>
 				{isShowResultsSection && <Results />}
 			</StatisticsSection>

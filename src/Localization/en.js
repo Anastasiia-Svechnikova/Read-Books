@@ -158,7 +158,7 @@ const en = {
 	modalFaster: {
 		text: 'Well done! but you need to be a little bit faster. You can do it',
 		btnNew: 'New training',
-		btnBack: 'Back',
+		btnBack: 'Keep reading',
 	},
 	modalDone: {
 		text: 'Congratulations! Another book read.',
