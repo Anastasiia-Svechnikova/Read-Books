@@ -45,7 +45,6 @@ class StatisticsChart extends React.Component {
 						pagesPerDay
 							? {
 									axis: { stroke: '#756f6a7e' },
-
 									tickLabels: { fontSize: 14 },
 							  }
 							: { axis: { stroke: '#756f6a7e' } }
