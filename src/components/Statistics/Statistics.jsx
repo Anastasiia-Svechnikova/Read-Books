@@ -27,6 +27,8 @@ import {
 	selectFinishedPages,
 	selectPlanningBooks,
 	selectShowResultsSection,
+	selectFinishedPagesPerDayChartData,
+	selectPagesPerDay,
 } from '../../Redux/Planning/planningSelectors';
 
 import {
@@ -41,8 +43,9 @@ import StatisticsChart from './StatisticsChart/StatisticsChart';
 export default function Statistics() {
 
 	const translation = useTranslation();
-
+	const finishedPagesPerDayChartData = useSelector(selectFinishedPagesPerDayChartData)
 	const data = useSelector(selectPlanFact);
+	const pagesPerDay = useSelector(selectPagesPerDay)
 	const isShowResultsSection = useSelector(selectShowResultsSection);
 	const books = useSelector(selectPlanningBooks);
 	const isShowBtn = !!(books.length)
@@ -126,7 +129,7 @@ export default function Statistics() {
 						{translation.statistics.statTitle}
 						<StatisticDaysSpan> {data[0]?.plan ? data[0]?.plan : 0}</StatisticDaysSpan>
 					</StatisticsTitle>
-					<StatisticsChart/>
+					<StatisticsChart pagesPerDay={pagesPerDay } duration ={duration} data = {finishedPagesPerDayChartData}/>
 					{/* <ResponsiveContainer width={'99%'} height={215}>
 						<LineChart
 							width={809}

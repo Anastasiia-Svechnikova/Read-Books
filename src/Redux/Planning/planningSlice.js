@@ -17,8 +17,7 @@ const initialState = {
 	endDate: '',
 	pagesPerDay: null,
 	duration: null,
-	stats: null,
-	// isShowStartTraningBtn: false,
+	stats: [],
 	isShowResults: false,
 	planFact: [],
 	isLoading: false,
@@ -81,6 +80,7 @@ const planningSlice = createSlice({
 		},
 		[addReadingPage.fulfilled](state, { payload }) {
 			state.isLoading = false;
+			state.stats = payload.planning.stats;
 			state.readedPages = payload.planning.stats;
 			state.pagesReaded = payload.book.pagesFinished;
 		},
@@ -104,6 +104,7 @@ const planningSlice = createSlice({
 		},
 		[getCurrentPlanning.rejected](state) {
 			state.isLoading = false;
+			state.stats = []
 		},
 	},
 });
