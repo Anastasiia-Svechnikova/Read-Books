@@ -11,8 +11,9 @@ import {
 } from 'Redux/Planning/planningOperations';
 import {
 	selectPlanFact,
-	selectFinishedPages,
+	// selectFinishedPages,
 	selectPagesFinished,
+	selectStats,
 } from 'Redux/Planning/planningSelectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -39,7 +40,7 @@ export default function Results() {
 	const [isShowModalEndReading, setIsShowModalEndReading] = useState(false);
 	const [isDisabledBtn, setIsDisabledBtn] = useState(false);
 
-	const finishedPages = useSelector(selectFinishedPages);
+	// const finishedPages = useSelector(selectFinishedPages);
 	const data = useSelector(selectPlanFact);
 	const pagesFinished = useSelector(selectPagesFinished);
 
@@ -47,10 +48,15 @@ export default function Results() {
 
 	const dispatch = useDispatch();
 	const dateToday = normalizeDate(Date.now())
+	const stats = useSelector(selectStats)
+	console.log(stats)
+
+	// useEffect(() => {
+	// })
 
 	useEffect(() => {
 		const checkTotalPlan = () => {
-			const totalFinishedPages = finishedPages?.reduce(
+			const totalFinishedPages = stats?.reduce(
 				(total, el) => total + el.pagesCount,
 				0
 			);
@@ -62,21 +68,21 @@ export default function Results() {
 		};
 
 		checkTotalPlan();
-	}, [data, dispatch, finishedPages]);
+	}, [data, dispatch, stats]);
 
 	const handleFormSubmit = e => {
 		e.preventDefault();
 		const inputValue = Number(e.target.elements.page.value);
-		const unreadPages = data[data.length - 1]?.plan - data[0]?.fact;
+		const pagesLeft = data[data.length - 1]?.plan - data[0]?.fact;
 
 		if (Number.isNaN(inputValue)) {
-			Notify.failure(`Enter numbers`);
+			Notify.failure(`Enter numbers, please`);
 			return;
 		}
 
-		if (inputValue > unreadPages) {
+		if (inputValue > pagesLeft) {
 			return Notify.failure(
-				`${translation.results.notify1part} ${unreadPages} ${translation.results.notify2part}`
+				`${translation.results.notify1part} ${pagesLeft} ${translation.results.notify2part}`
 			);
 		}
 
@@ -126,8 +132,8 @@ export default function Results() {
 					<StatisticsPageTitle>{translation.results.stat}</StatisticsPageTitle>
 				</StatisticsPageBox>
 				<ResultsPageList>
-					{finishedPages &&
-						finishedPages.map((el, i) => <ResultsItem key={i} data={el} />)}
+					{stats &&
+						stats.map((el, i) => <ResultsItem key={i} data={el} />)}
 				</ResultsPageList>
 			</ResultsBox>
 			{isShowModal && (

@@ -1,20 +1,12 @@
+import StatisticsChart from './StatisticsChart/StatisticsChart';
 // import  CustomLabel from './CustomLabel/CustomLabel';
 import Results from 'components/Results/Results';
 import useTranslation from 'Hooks/useTranslations';
 import {
-	// LineChart,
-	// Line,
-	// XAxis,
-	// CartesianGrid,
-	// Tooltip,
-	// LabelList,
-	// ResponsiveContainer,
-} from 'recharts';
-import {
 	StatisticsSection,
 	StatisticsBox,
 	StatisticsTitle,
-	// StatisticsText,
+	StatisticsText,
 	StartTrainingBtn,
 	StartTrainingBox,
 	StatisticDaysSpan,
@@ -24,11 +16,11 @@ import {
 	selectPlanFact,
 	selectDuration,
 	selectStartDate,
-	selectFinishedPages,
 	selectPlanningBooks,
 	selectShowResultsSection,
 	selectFinishedPagesPerDayChartData,
 	selectPagesPerDay,
+	selectStats,
 } from '../../Redux/Planning/planningSelectors';
 
 import {
@@ -36,11 +28,15 @@ import {
 	addPlanFact,
 } from 'Redux/Planning/planningSlice';
 import { useEffect } from 'react';
-import { createNextDay, dotsPaddingByWidth, normalizeDate } from './functions/functions';
-import StatisticsChart from './StatisticsChart/StatisticsChart';
+import { createNextDay, normalizeDate } from './functions/functions';
+import { useMediaQuery } from 'react-responsive';
 
 
 export default function Statistics() {
+	const isDesktop = useMediaQuery({ minWidth: 1280 });
+	const isTablet = useMediaQuery({ minWidth: 768 });
+	
+
 
 	const translation = useTranslation();
 	const finishedPagesPerDayChartData = useSelector(selectFinishedPagesPerDayChartData)
@@ -51,7 +47,7 @@ export default function Statistics() {
 	const isShowBtn = !!(books.length)
 	const duration = useSelector(selectDuration);
 	const getStartDate = useSelector(selectStartDate);
-	const finishedPages = useSelector(selectFinishedPages);
+	const finishedPages = useSelector(selectStats);
 
 	const dispatch = useDispatch();
 
@@ -74,10 +70,6 @@ export default function Statistics() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [finishedPages]);
 
-	// const checkData =
-	// 	data?.length > 0 && isShowResultsSection
-	// 		? data
-	// 		: [{ name: 'Day 0', fact: 5, plan: 10 }];
 
 	const createObjByPlan = () => {
 		const startDate = new Date(getStartDate);
@@ -127,61 +119,17 @@ export default function Statistics() {
 				<StatisticsBox>
 					<StatisticsTitle>
 						{translation.statistics.statTitle}
-						<StatisticDaysSpan> {data[0]?.plan ? data[0]?.plan : 0}</StatisticDaysSpan>
+						<StatisticDaysSpan> {pagesPerDay ?pagesPerDay : 0 }</StatisticDaysSpan>
 					</StatisticsTitle>
-					<StatisticsChart pagesPerDay={pagesPerDay } duration ={duration} data = {finishedPagesPerDayChartData}/>
-					{/* <ResponsiveContainer width={'99%'} height={215}>
-						<LineChart
-							width={809}
-							height={215}
-							data={checkData}
-							margin={{
-								top: 15,
-								right: 50,
-								left: 5,
-								bottom: 5,
-							}}
-							
-						>
-							<CartesianGrid strokeDasharray="0" horizontalPoints={[210]} />
-							<XAxis
-								dataKey="name"
-								hide={true}
-								padding={
-									checkData?.length <= 1 && { left: dotsPaddingByWidth() }
-								}
-							/>
-z
-							<Tooltip />
-
-							<Line
-								type="monotone"
-								dataKey="plan"
-								stroke="#000000"
-								fill="#000000"
-								activeDot={{ r: 7 }}
-								height={5}
-								strokeWidth={2}
-								dot={{ stroke: '#000000', strokeWidth: 4 }}
-								name="PLAN"
-							>
-								<LabelList content={<CustomLabel type="plan" checkData={ checkData} />} />
-							</Line>
-							<Line
-								type="monotone"
-								dataKey="fact"
-								stroke="#FF6B08"
-								fill="#FF6B08"
-								activeDot={{ r: 7 }}
-								strokeWidth={2}
-								dot={{ stroke: '#FF6B08', strokeWidth: 4 }}
-								name="FACT"
-							>
-								<LabelList content={<CustomLabel type="fact" checkData={ checkData} />} />
-							</Line>
-						</LineChart>
-					</ResponsiveContainer>*/}
-					{/* <StatisticsText>{translation.statistics.time}</StatisticsText>  */}
+					<StatisticsChart
+						isDesktop={isDesktop}
+						isTablet={isTablet}
+						pagesPerDay={pagesPerDay}
+						currentWeek= {finishedPagesPerDayChartData.currentWeek}
+						duration={duration}
+						data={finishedPagesPerDayChartData.result} />
+				
+					<StatisticsText>{translation.statistics.time}  {finishedPagesPerDayChartData.currentWeek} </StatisticsText> 
 				</StatisticsBox>
 				{isShowResultsSection && <Results />}
 			</StatisticsSection>

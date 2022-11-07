@@ -52,6 +52,7 @@ export const StatisticsSection = styled.section`
 `;
 
 export const StatisticsBox = styled.div`
+position: relative;
 	width: 280px;
 	padding: 22px;
 	margin-bottom: 32px;
@@ -62,31 +63,33 @@ export const StatisticsBox = styled.div`
 
 	@media screen and (min-width: 768px) {
 		width: 704px;
-		padding-left: 49px;
-		padding-right: 30px;
-		padding-top: 35px;
+		padding-left: 29px;
+		padding-right: 35px;
+		padding-top: 30px;
 		margin-bottom: 40px;
 	}
 
 	@media screen and (min-width: 1280px) {
 		width: 928px;
 		height: 340px;
-
-		padding-top: 37px;
-		padding-right: 40px;
-		padding-bottom: 32px;
+		padding-right: 42px;
+		padding-bottom: 42px;
 		padding-left: 40px;
 		margin-bottom: 0;
 	}
 `;
 
-export const StatisticsTitle = styled.h2`
+export const StatisticsTitle = styled.p`
 	display: flex;
 	margin-left: 5px;
 
-	font-size: 12px;
+	font-size: 10px;
 	color: ${p => p.theme.colors.textMain};
 	text-transform: uppercase;
+
+	@media screen and (min-width: 768px) {
+		font-size: 11px;
+	}
 
 	@media screen and (min-width: 1280px) {
 		margin-bottom: 8px;
@@ -98,16 +101,21 @@ margin-left: 5px;
 `;
 
 export const StatisticsText = styled.p`
+	position: absolute;
+	bottom: 20px;
+	right: -40px;
 	margin-top: 5px;
 	margin-right: 50px;
 
-	font-size: 12px;
-	font-weight: 600;
+	font-size: 10px;
+	/* font-weight: 500; */
 	
 	color: ${p => p.theme.colors.counter};
 	text-transform: uppercase;
 
 	@media screen and (min-width: 768px) {
+		font-size: 11px;
 		margin-right: 57px;
 	}
+	
 `;

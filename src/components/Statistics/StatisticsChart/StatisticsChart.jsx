@@ -1,64 +1,78 @@
 import React from 'react';
-// import * as V from 'victory';
 import {
 	VictoryChart,
 	VictoryScatter,
 	VictoryAxis,
 	VictoryLine,
+	VictoryTooltip,
+	VictoryVoronoiContainer,
 } from 'victory';
-
-// function proceedVisibleData() {
-
-// }
-
-// const totalPages = 300;
-// const pagesPerDay = 300;
-
-// console.log( [...Array(amountOfDays + 1).keys()].slice(6))
 
 class StatisticsChart extends React.Component {
 	render() {
-		const { data, pagesPerDay, duration } = this.props;
-
+		const { data, pagesPerDay, duration, isDesktop, isTablet } = this.props;
+		// console.log(data)
+		const normalizeDurationToWeek = duration > 7 ? 7 : duration;
 		const pagesAxisLabelArray = [0, pagesPerDay, pagesPerDay * 2];
-
-		const daysArray = [...Array(duration + 1).keys()];
+		const tickData = [...Array(normalizeDurationToWeek + 1).keys()].map(
+			(el, i) => (i === 0 ? '' : `${i}`)
+		);
+		const daysArray = [...Array(normalizeDurationToWeek + 1).keys()];
 		const averagePagesPerDayLineData = daysArray.map(el => {
-			return { x: el, y: pagesPerDay };
+			return {
+				x: el,
+				y: pagesPerDay,
+				label: `PLAN: ${pagesPerDay} pages per day`,
+			};
 		});
 
-		console.log(data);
 		return (
 			<VictoryChart
-				width={700}
-				//    theme={VictoryTheme.material}
+				width={isDesktop ? 850 : isTablet ? 700 : 350}
 				domainPadding={{ x: 0, y: 10 }}
+				containerComponent={<VictoryVoronoiContainer />}
 			>
 				<VictoryAxis
-					// tickValues specifies both the number of ticks and where
-					// they are placed on the axis
 					style={{
 						axis: { stroke: '#756f6a7e' },
-						// axisLabel: {fontSize: 20, padding: 30},
 						grid: { stroke: '#756f6a7e', padding: 30 },
 					}}
 					tickValues={daysArray}
-					tickFormat={['', '', '', '', '', '', '']}
+					tickFormat={tickData}
 				/>
 				<VictoryAxis
-					style={{
-						axis: { stroke: '#756f6a7e' },
-						// axisLabel: {fontSize: 20, padding: 30},
+					style={
+						pagesPerDay
+							? {
+									axis: { stroke: '#756f6a7e' },
 
-						tickLabels: { fontSize: 14, padding: 5, color: 'red' },
-					}}
+									tickLabels: { fontSize: 14 },
+							  }
+							: { axis: { stroke: '#756f6a7e' } }
+					}
 					orientation="left"
 					tickValues={pagesAxisLabelArray}
 					dependentAxis
-					// tickFormat specifies how ticks should be displayed
-					tickFormat={x => `${x}`}
 				/>
 				<VictoryLine
+					labelComponent={
+						<VictoryTooltip
+							cornerRadius={0}
+							pointerLength={0}
+							flyoutStyle={{
+								fill: '#F5F7FA',
+								stroke: 'transparent',
+							}}
+						/>
+					}
+					style={{
+						labels: {
+							fontSize: 12,
+							lineHeight: 2,
+							fontFamily: 'Montserrat',
+							fill: 'black',
+						},
+					}}
 					animate={{
 						duration: 2000,
 						onLoad: { duration: 2000 },
@@ -67,19 +81,31 @@ class StatisticsChart extends React.Component {
 					data={averagePagesPerDayLineData}
 				/>
 				<VictoryLine
+					labelComponent={
+						<VictoryTooltip
+							cornerRadius={0}
+							pointerLength={0}
+							flyoutStyle={{
+								fill: '#F5F7FA',
+								stroke: 'transparent',
+							}}
+						/>
+					}
 					interpolation="natural"
 					animate={{
 						duration: 2000,
 						onLoad: { duration: 2000 },
 					}}
-					data={data}
+					data={data ? data : [{ day: 0, y: 0, label: 'FACT: 0 pages' }]}
 					style={{
 						data: {
 							stroke: '#f2791c',
 						},
 						labels: {
-							fontSize: 15,
-							fill: ({ datum }) => (datum.x === 3 ? '#000000' : '#c43a31'),
+							fontSize: 12,
+							lineHeight: 2,
+							fontFamily: 'Montserrat',
+							fill: 'black',
 						},
 					}}
 				/>

@@ -94,8 +94,8 @@ const en = {
 	},
 	statistics: {
 		startBtn: 'Start training',
-		statTitle: 'Amount of pages / day',
-		time: 'Time',
+		statTitle: 'Amount of pages / day:',
+		time: 'Day in week',
 		plan: 'PLAN',
 		fact: 'FACT',
 	},

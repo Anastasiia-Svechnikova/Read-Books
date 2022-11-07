@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const ResultsPageItem = styled.li`
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1.3fr 0.5fr 1.2fr;
 	align-items: center;
 	gap: 20px;
 	@media screen and (min-width: 768px) {

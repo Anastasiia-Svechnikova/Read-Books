@@ -38,7 +38,8 @@ export const addReadingPage = createAsyncThunk(
 
 	async ({ pages }, thunkAPI) => {
 		try {
-			const data = patchPlanning({ pages });
+			const data = await patchPlanning({ pages });
+
 			return data;
 		} catch (e) {
 			return thunkAPI.rejectWithValue(e.message);

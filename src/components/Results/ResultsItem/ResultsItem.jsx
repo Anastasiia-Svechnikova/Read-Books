@@ -1,3 +1,4 @@
+import { normalizeCurrentDate } from 'Utils/timeValidationFunctions';
 import {
 	DateText,
 	PagesCountSpan,
@@ -8,8 +9,8 @@ import {
 
 
 export default function ResultsItem({ data: { time, pagesCount } }) {
-	const date = time.slice(0, 10);
-	const timeUpdate = time.slice(11, 16);
+	const date = normalizeCurrentDate(time.split(' ')[0]) 
+	const timeUpdate = time.split(' ')[1]
 
 	return (
 		<ResultsPageItem>

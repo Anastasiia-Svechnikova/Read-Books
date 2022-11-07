@@ -12,7 +12,6 @@ import {
 const initialState = {
 	isPlanningActive:false,
 	books: [],
-	// booksId: [],
 	startDate: '',
 	endDate: '',
 	pagesPerDay: null,
@@ -22,7 +21,6 @@ const initialState = {
 	planFact: [],
 	isLoading: false,
 	errorMessage: false,
-	readedPages: null,
 	pagesReaded: null,
 };
 
@@ -30,9 +28,6 @@ const planningSlice = createSlice({
 	name: 'planning',
 	initialState,
 	reducers: {
-		// showStartTraningBtn(state, { payload }) {
-		// 	state.isShowStartTraningBtn = payload;
-		// },
 		showResults(state, { payload }) {
 			state.isShowResults = payload;
 		},
@@ -43,7 +38,8 @@ const planningSlice = createSlice({
 			state.planFact = [];
 			state.isShowResults = false;
 			state.isPlanningActive = false;
-			// state.booksId = [];
+			state.duration = null;
+			state.pagesPerDay = null
 			state.books = [];
 		},
 	},
@@ -55,9 +51,7 @@ const planningSlice = createSlice({
 			state.endDate = payload.endDate;
 			state.pagesPerDay = payload.pagesPerDay;
 			state.duration = payload.duration;
-			// state.booksId = payload.books.map(({ _id }) => _id);
 			state.stats = payload.stats;
-			state.isShowStartTraningBtn = true;
 		},
 
 		[startPlanning.pending](state) {
@@ -81,7 +75,6 @@ const planningSlice = createSlice({
 		[addReadingPage.fulfilled](state, { payload }) {
 			state.isLoading = false;
 			state.stats = payload.planning.stats;
-			state.readedPages = payload.planning.stats;
 			state.pagesReaded = payload.book.pagesFinished;
 		},
 		[addReadingPage.rejected](state) {
@@ -95,7 +88,6 @@ const planningSlice = createSlice({
 			state.pagesPerDay = payload.planning.pagesPerDay;
 			state.duration = payload.planning.duration;
 			state.stats = payload.planning.stats;
-			state.readedPages = payload.planning.stats;
 			state.isShowResults = state.planFact.length > 0 ? true : false;
 			state.isLoading = false;
 		},
@@ -104,6 +96,7 @@ const planningSlice = createSlice({
 		},
 		[getCurrentPlanning.rejected](state) {
 			state.isLoading = false;
+			state.duration = null
 			state.stats = []
 		},
 	},
@@ -111,7 +104,6 @@ const planningSlice = createSlice({
 
 export const planningReducer = planningSlice.reducer;
 export const {
-	// showStartTraningBtn,
 	resetPagesAndPlan,
 	showResults,
 	addPlanFact,
