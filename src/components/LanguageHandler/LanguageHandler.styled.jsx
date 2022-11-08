@@ -6,13 +6,13 @@ export const Select = styled.select`
 	width: 33px;
 	padding: 0px 5px;
 	text-align: center;
-	font-size: 16px;
+	font-size: 14px;
 	border: none;
 	border-radius: 50%;
 
 	color: ${p => p.theme.colors.textSecondary};
 	font-weight: bold;
-	background-color: ${p => p.theme.colors.googleBtn};
+	/* background-color: ${p => p.theme.colors.googleBtn}; */
 	transition: ${p => p.theme.transition};
 	&:hover,
 	&:focus {

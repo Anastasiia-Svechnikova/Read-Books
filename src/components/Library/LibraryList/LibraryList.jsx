@@ -12,6 +12,7 @@ import { Header } from './LibraryList.styled';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { selectBooksByCategory } from 'Redux/Books/booksSelectors';
+import { Link } from 'react-router-dom';
 
 const LibraryList = ({ category }) => {
 	const translation = useTranslation();
@@ -79,6 +80,7 @@ const LibraryList = ({ category }) => {
 							}
 						)}
 					</ul>
+					<Link to="">My training</Link>
 				</Container>
 			</Section>
 		)

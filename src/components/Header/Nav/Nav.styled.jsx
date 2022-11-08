@@ -23,6 +23,7 @@ export const IconLink = styled(NavLink)`
 export const StyledNav = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: flex-end;
 	padding: 0px 8px;
 	gap: 20px;
 	border-right: 1px solid ${p => p.theme.colors.borderNav};

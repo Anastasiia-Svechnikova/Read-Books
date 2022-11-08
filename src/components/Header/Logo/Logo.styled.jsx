@@ -7,7 +7,7 @@ export const Logotype = styled.p`
 	color: ${p => p.theme.colors.textMain};
 	padding: 16px 0px;
 	font-weight: 400;
-	font-style: 20px;
+	font-size: 20px;
 
 	font-family: 'Abril Fatface';
 `;

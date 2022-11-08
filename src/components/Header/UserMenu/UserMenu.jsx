@@ -3,6 +3,7 @@ import { selectName } from 'Redux/Auth/authSelectors';
 import { UserIcon, UserWrapper, UserMeta, UserName } from './UserMenu.styled';
 import { useMediaQuery } from 'react-responsive';
 import { selectBackupUserName } from 'Redux/Books/booksSelectors';
+import Settings from 'components/Settings/Settings';
 
 const UserMenu = () => {
 	const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
@@ -12,11 +13,15 @@ const UserMenu = () => {
 
 	return (
 		<UserWrapper>
-			{isTabletOrDesktop && 
+
 				<UserMeta>
+				{isTabletOrDesktop &&
+					<>
 					<UserIcon>{userIcon}</UserIcon>
-					<UserName>{userName}</UserName>
-				</UserMeta>}
+						<UserName>{userName}</UserName>
+					</>}
+					<Settings />
+				</UserMeta>
 		</UserWrapper>
 	);
 

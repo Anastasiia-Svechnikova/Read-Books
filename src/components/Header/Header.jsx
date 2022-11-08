@@ -6,7 +6,7 @@ import LogOutBtn from './LogOutBtn/LogOutBtn';
 import { useMediaQuery } from 'react-responsive';
 import { selectIsLoggedIn } from 'Redux/Auth/authSelectors';
 import { useSelector } from 'react-redux';
-import { Head, HeaderWrapper, NavAlign } from './Header.styled';
+import { Head, HeaderWrapper, HeaderWrapperMobile, NavAlign } from './Header.styled';
 import { Container } from 'components/Common/Common.styled';
 
 const Header = () => {
@@ -16,7 +16,32 @@ const Header = () => {
 	return (
 		<Head>
 			<Container>
-				<HeaderWrapper>
+				{isTabletOrDesktop ? <HeaderWrapper>
+					<Logo />
+					{isLoggedIn && (
+						<>
+							<UserMenu />
+
+							<NavAlign>
+								<Nav />
+								<LogOutBtn />
+							</NavAlign>
+						</>
+					)}
+				</HeaderWrapper> :
+					<HeaderWrapperMobile>
+						<Logo />
+					{isLoggedIn && (
+						<>
+							<NavAlign>
+								<UserMenu />
+								<Nav />
+								<LogOutBtn />
+							</NavAlign>
+						</>
+					)}
+					</HeaderWrapperMobile>}
+				{/* <HeaderWrapper>
 					<Logo />
 					{isLoggedIn && (
 						<>
@@ -29,7 +54,7 @@ const Header = () => {
 							</NavAlign>
 						</>
 					)}
-				</HeaderWrapper>
+				</HeaderWrapper> */}
 			</Container>
 		</Head>
 	);

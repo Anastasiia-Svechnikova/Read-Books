@@ -21,11 +21,19 @@ export const Head = styled.header`
 export const NavAlign = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: flex-end;
 `;
 
 export const HeaderWrapper = styled.div`
-	display: flex;
+	display: grid;
 	align-items: center;
-	justify-content: ${AuthLocation};
+	/* justify-content: ${AuthLocation}; */
+	grid-template-columns: 1fr 1fr 1fr;
+`;
+export const HeaderWrapperMobile = styled.div`
+	display: grid;
+	align-items: center;
+	/* justify-content: ${AuthLocation}; */
+	grid-template-columns: 1fr 1fr;
 `;
 
