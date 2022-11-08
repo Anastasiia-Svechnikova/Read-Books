@@ -8,10 +8,11 @@ import {
 	VictoryVoronoiContainer,
 } from 'victory';
 
-class StatisticsChart extends React.Component {
+class StatisticsChart extends React.PureComponent {
+
 	render() {
 		const { data, pagesPerDay, duration, isDesktop, isTablet } = this.props;
-		// console.log(data)
+
 		const normalizeDurationToWeek = duration > 7 ? 7 : duration;
 		const pagesAxisLabelArray = [0, pagesPerDay, pagesPerDay * 2];
 		const tickData = [...Array(normalizeDurationToWeek + 1).keys()].map(

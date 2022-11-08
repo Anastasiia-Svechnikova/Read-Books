@@ -78,17 +78,18 @@ export const List = styled.ul`
 margin-bottom: 20px;
 	/* background-color: red; */
 	@media screen and (min-width: 768px) {
-		margin-bottom: 0;
+		margin-bottom: 30px;
 		width: 704px;
-		height: 235px;
+		height: 150px;
+		max-height: 235px;
 
 		overflow-y: scroll;
 	}
 	@media screen and (min-width: 1280px) {
 		width: 928px;
-		height: 150px;
+		/* height: 250px; */
 
-		overflow-y: scroll;
+
 	}
 
 	::-webkit-scrollbar {

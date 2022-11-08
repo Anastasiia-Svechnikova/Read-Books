@@ -38,6 +38,7 @@ const LibraryPage = () => {
 		if (accessToken) {
 			dispatch(getUserBooksThunk());
 			if (isPlanningActive){
+
 			 dispatch(getCurrentPlanning()); }
 		}
 	}, [accessToken, dispatch, isPlanningActive]);

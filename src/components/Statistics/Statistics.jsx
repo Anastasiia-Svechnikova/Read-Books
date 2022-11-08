@@ -27,7 +27,7 @@ import {
 	showResults,
 	addPlanFact,
 } from 'Redux/Planning/planningSlice';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { createNextDay, normalizeDate } from './functions/functions';
 import { useMediaQuery } from 'react-responsive';
 
@@ -71,7 +71,7 @@ export default function Statistics() {
 	}, [finishedPages]);
 
 
-	const createObjByPlan = () => {
+	const createObjByPlan = useCallback( () => {
 		const startDate = new Date(getStartDate);
 	
 		if (books?.length > 0) {
@@ -81,7 +81,7 @@ export default function Statistics() {
 
 			for (let i = 1; i <= duration; i += 1) {
 				if (i === 1) {
-				console.log(normalizeDate(startDate))
+
 				objPlanFact.push({
 					name: normalizeDate(startDate),
 					fact: 0,
@@ -98,7 +98,7 @@ export default function Statistics() {
 			
 		return objPlanFact;
 	};
-		}
+		}, [books, duration, getStartDate])
 
 
 	const handleClickStartTraining = () => {
@@ -121,8 +121,8 @@ export default function Statistics() {
 						{translation.statistics.statTitle}
 						<StatisticDaysSpan> {pagesPerDay ?pagesPerDay : 0 }</StatisticDaysSpan>
 					</StatisticsTitle>
-					<StatisticsChart
-						isDesktop={isDesktop}
+					<StatisticsChart 
+					 isDesktop={isDesktop}
 						isTablet={isTablet}
 						pagesPerDay={pagesPerDay}
 						currentWeek= {finishedPagesPerDayChartData.currentWeek}

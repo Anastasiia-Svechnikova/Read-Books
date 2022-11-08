@@ -11,7 +11,6 @@ import {
 } from 'Redux/Planning/planningOperations';
 import {
 	selectPlanFact,
-	// selectFinishedPages,
 	selectPagesFinished,
 	selectStats,
 } from 'Redux/Planning/planningSelectors';
@@ -40,19 +39,12 @@ export default function Results() {
 	const [isShowModalEndReading, setIsShowModalEndReading] = useState(false);
 	const [isDisabledBtn, setIsDisabledBtn] = useState(false);
 
-	// const finishedPages = useSelector(selectFinishedPages);
 	const data = useSelector(selectPlanFact);
 	const pagesFinished = useSelector(selectPagesFinished);
-
 	const translation = useTranslation();
-
 	const dispatch = useDispatch();
 	const dateToday = normalizeDate(Date.now())
 	const stats = useSelector(selectStats)
-	console.log(stats)
-
-	// useEffect(() => {
-	// })
 
 	useEffect(() => {
 		const checkTotalPlan = () => {

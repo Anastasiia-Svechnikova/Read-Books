@@ -12,9 +12,17 @@ export const selectStats = state => state.planning.stats;
 
 
 export const selectPagesPerDay = state => state.planning.pagesPerDay;
-export const selectPagesFinished = state => state.planning.pagesReaded;
+// export const selectPagesFinished = state => state.planning.pagesReaded;
 export const selectShowResultsSection = state => state.planning.isShowResults;
+export const selectPagesTotal = createSelector([selectPlanningBooks], (books) => {
+    return books.reduce((acc, el)=> acc + el.pagesTotal, 0)
+})
 
+
+    
+export const selectPagesFinished = createSelector([selectStats], (stats) => {
+    return stats.reduce((acc, el)=> acc + el.pagesCount, 0)
+})
 
 
 
@@ -23,11 +31,11 @@ export const selectFinishedPagesPerDayChartData = createSelector([selectDuration
     (duration, isPlanningActive, stats, startDate) => {
     if (isPlanningActive && stats.length > 0) {
         const result = [...Array(duration + 1).keys()].map((el, i) =>{
-        return { day: i, y: 0 }
+        return { day: i, y: 0,  }
         })
         const currentDay = getCurrentDay(startDate, stats[stats.length - 1])
         const currentWeek = getCurrentWeek(currentDay)
-        stats.forEach(el => {
+         stats.forEach(el => {
             const dayNumber = getDayNumber(startDate, el.time.split(' ')[0]) + 1
             if (result[dayNumber]) {
                 result[dayNumber].y += el.pagesCount
@@ -41,7 +49,7 @@ export const selectFinishedPagesPerDayChartData = createSelector([selectDuration
         return{result: proceededToWeekResult, currentWeek}
 
     }
-
+    return [{ day: 0, y: 0 }]
 
 })
 
