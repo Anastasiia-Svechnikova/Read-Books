@@ -10,22 +10,16 @@ export const selectIsLoadingPlanning = state => state.planning.isLoading;
 export const selectDuration = state => state.planning.duration;
 export const selectStats = state => state.planning.stats;
 
-
 export const selectPagesPerDay = state => state.planning.pagesPerDay;
-// export const selectPagesFinished = state => state.planning.pagesReaded;
+
 export const selectShowResultsSection = state => state.planning.isShowResults;
 export const selectPagesTotal = createSelector([selectPlanningBooks], (books) => {
     return books.reduce((acc, el)=> acc + el.pagesTotal, 0)
 })
 
-
-    
 export const selectPagesFinished = createSelector([selectStats], (stats) => {
     return stats.reduce((acc, el)=> acc + el.pagesCount, 0)
 })
-
-
-
 
 export const selectFinishedPagesPerDayChartData = createSelector([selectDuration, selectIsPlanningActive, selectStats, selectStartDate],
     (duration, isPlanningActive, stats, startDate) => {

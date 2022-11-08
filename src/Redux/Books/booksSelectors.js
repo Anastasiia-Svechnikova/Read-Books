@@ -1,3 +1,4 @@
+import { createSelector } from "@reduxjs/toolkit";
 import BOOK_CATEGORY from "components/Constants/bookCategories";
 
 export const selectBooksByCategory = category => state => {
@@ -11,7 +12,11 @@ export const selectBooksByCategory = category => state => {
 	return state.books.books[category];
 };
 
-
 export const selectAllBooks = state => state.books.books;
 export const selectBooksStatus = state => state.books.status;
 export const selectBackupUserName= state => state.books.backupUserName;
+
+export const selectAreFinishedAndCurrentBooksEmpty = createSelector([selectAllBooks], (books) => {
+	return !books.currentlyReading.length && !books.finishedReading.length
+
+})

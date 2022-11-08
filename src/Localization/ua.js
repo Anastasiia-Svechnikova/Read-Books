@@ -78,6 +78,7 @@ const ua = {
 		end: 'Кінець',
 	},
 	results: {
+		pages: 'стор.',
 		title: 'Результати',
 		label1: 'Дата',
 		label2: 'Кількість сторінок',

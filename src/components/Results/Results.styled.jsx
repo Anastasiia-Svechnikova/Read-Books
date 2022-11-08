@@ -303,7 +303,15 @@ export const BtnBox = styled.div`
 	}
 `;
 
-export const ModalBox = styled.div``;
+export const ModalBox = styled.div`
+width: 205px;
+@media screen and (min-width: 768px) {
+		width: 400px;
+	}
+	@media screen and (min-width: 1280px) {
+		width: 510px;
+	}
+`;
 
 export const ModalText = styled.p`
 	margin-left: auto;

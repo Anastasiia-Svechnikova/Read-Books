@@ -59,6 +59,7 @@ const LibraryPage = () => {
 					/>
 					<LibraryList category={BOOK_CATEGORY.currentlyReading} />
 					<LibraryList category={BOOK_CATEGORY.goingToRead} />
+					
 				</>
 			)}
 		</>

@@ -8,11 +8,11 @@ import FinishedReadingListHeaders from '../FinishedReadingListHeaders/FinishedRe
 
 import { Container, Section } from 'components/Common/Common.styled';
 import { useMediaQuery } from 'react-responsive';
-import { Header } from './LibraryList.styled';
+import { Header, StyledLink } from './LibraryList.styled';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { selectBooksByCategory } from 'Redux/Books/booksSelectors';
-import { Link } from 'react-router-dom';
+import { selectAreFinishedAndCurrentBooksEmpty, selectBooksByCategory } from 'Redux/Books/booksSelectors';
+
 
 const LibraryList = ({ category }) => {
 	const translation = useTranslation();
@@ -21,6 +21,7 @@ const LibraryList = ({ category }) => {
 		() => (category === BOOK_CATEGORY.currentlyReading ? '#FF6B08' : '#A6ABB9'),
 		[category]
 	);
+	const isShowLink = useSelector(selectAreFinishedAndCurrentBooksEmpty)
 
 	const books = useSelector(selectBooksByCategory(category));
 	const isFinishedReadingList = category === BOOK_CATEGORY.finishedReading;
@@ -80,7 +81,7 @@ const LibraryList = ({ category }) => {
 							}
 						)}
 					</ul>
-					<Link to="">My training</Link>
+					{isShowLink &&<StyledLink to="/training">My training</StyledLink>}
 				</Container>
 			</Section>
 		)

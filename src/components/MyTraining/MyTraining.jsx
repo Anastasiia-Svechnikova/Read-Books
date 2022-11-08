@@ -50,7 +50,6 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 			return;
 		}
 		const value = e.currentTarget.elements.select.value;
-		console.log("startValue: ", startValue);
 		
 		dispatch(
 			startPlanning({

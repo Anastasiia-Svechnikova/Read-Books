@@ -78,6 +78,7 @@ const en = {
 		end: 'Finish',
 	},
 	results: {
+		pages: 'pages',
 		title: 'Results',
 		label1: 'Date',
 		label2: 'Amount of pages',
