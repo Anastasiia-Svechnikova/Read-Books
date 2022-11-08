@@ -122,6 +122,7 @@ export default function Statistics() {
 						<StatisticDaysSpan> {pagesPerDay ?pagesPerDay : 0 }</StatisticDaysSpan>
 					</StatisticsTitle>
 					<StatisticsChart 
+						// darkColor= {}
 					 isDesktop={isDesktop}
 						isTablet={isTablet}
 						pagesPerDay={pagesPerDay}

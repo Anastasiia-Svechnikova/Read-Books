@@ -8,6 +8,10 @@ import {
 	VictoryVoronoiContainer,
 } from 'victory';
 
+
+
+
+
 class StatisticsChart extends React.PureComponent {
 
 	render() {
@@ -45,7 +49,7 @@ class StatisticsChart extends React.PureComponent {
 					style={
 						pagesPerDay
 							? {
-									axis: { stroke: '#756f6a7e' },
+									axis: { stroke: 'transparent' },
 									tickLabels: { fontSize: 14 },
 							  }
 							: { axis: { stroke: '#756f6a7e' } }
@@ -66,6 +70,9 @@ class StatisticsChart extends React.PureComponent {
 						/>
 					}
 					style={{
+						data: {
+							stroke: '#756f6aeb',
+						},
 						labels: {
 							fontSize: 12,
 							lineHeight: 2,
@@ -125,7 +132,7 @@ class StatisticsChart extends React.PureComponent {
 					}}
 					data={[{ x: 0, y: pagesPerDay }]}
 					size={5}
-					style={{ data: { fill: 'black' } }}
+					style={{ data: { fill: '#756f6aeb'} }}
 				/>
 			</VictoryChart>
 		);

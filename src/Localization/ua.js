@@ -96,7 +96,7 @@ const ua = {
 	statistics: {
 		startBtn: 'Почати тренування',
 		statTitle: 'Кількість сторінок / день :',
-		time: 'ДЕНЬ В ТИЖНІ',
+		time: 'ДЕНЬ У ТИЖНІ',
 		plan: 'ПЛАН',
 		fact: 'ФАКТ',
 	},
