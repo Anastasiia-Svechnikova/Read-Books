@@ -81,7 +81,7 @@ const LibraryList = ({ category }) => {
 							}
 						)}
 					</ul>
-					{isShowLink &&<StyledLink to="/training">My training</StyledLink>}
+					{isShowLink && <StyledLink to="/training">{translation.myTraining.title}</StyledLink>}
 				</Container>
 			</Section>
 		)
