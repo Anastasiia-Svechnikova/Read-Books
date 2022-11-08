@@ -50,7 +50,8 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 			return;
 		}
 		const value = e.currentTarget.elements.select.value;
-
+		console.log("startValue: ", startValue);
+		
 		dispatch(
 			startPlanning({
 				startDate: startValue,
@@ -71,12 +72,10 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 	const theme = {
 		rainbow: {
 			palette: {
-				brand: '#ffa500',
-				boxShadow: '0 0 2px #ffa500',
+				brand: '#fb8c43',
+
 			},
-			border: {
-				main: '1px solid transparent',
-			},
+
 		},
 	};
 	return (
@@ -99,10 +98,11 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 								value={startValue}
 								placeholder={translation.myTraining.start}
 								minDate={new Date(dateToday)}
+								maxDate={new Date(dateToday)}
 								onChange={handleChangeStart}
 								required={true}
 								icon={<Arrow />}
-								variant="double"
+								variant="single"
 								isCentered={true}
 							/>
 						</Application>
@@ -111,6 +111,7 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 					<CalenderThumb>
 						<Application theme={theme}>
 							<DatePicker
+								theme='dark'
 								value={endValue}
 								placeholder={translation.myTraining.end}
 								minDate={new Date(dateToday)}
@@ -119,6 +120,7 @@ const MyTraining = ({ handleMyTrainingOpen = null, isMobile = false }) => {
 								icon={<Arrow />}
 								variant="double"
 								isCentered={true}
+								 borderRadius="square"
 							/>
 						</Application>
 						<DateIcon />
