@@ -3,7 +3,9 @@ import { Field } from 'formik';
 
 export const Input = styled.div`
 	margin-bottom: 20px;
+	
 `;
+
 
 export const InputField = styled.div`
 	position: relative;
@@ -38,6 +40,9 @@ export const FieldInput = styled(Field)`
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 17px;
+	&::placeholder{
+		opacity: 0.17;
+	}
 `;
 
 export const Error = styled.p`

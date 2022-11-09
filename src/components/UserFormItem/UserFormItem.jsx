@@ -9,7 +9,8 @@ import {
 	Error,
 } from './UserFormItem.styled';
 
-export default function userInput({ name }) {
+export default function UserInput({ name, formType }) {
+
 	const getType = () => {
 		switch (name) {
 			case 'name':
@@ -55,10 +56,11 @@ export default function userInput({ name }) {
 				return '...';
 
 			case 'email':
-				return 'qwyour@email.com';
+				return 'qwyour@mail.com';
 
 			case 'password':
-				return '...';
+				console.log(name)
+				return formType === 'login' ? '...' : 'min 7 symbols, 1 letter, 1 number';
 
 			case 'confirm':
 				return '...';
@@ -71,7 +73,7 @@ export default function userInput({ name }) {
 	// Input UserForm
 	return (
 		<Input key={name}>
-			<InputField>
+			<InputField >
 				<Label>{getTitle()}</Label>
 				<FieldInput
 					type={getType()}

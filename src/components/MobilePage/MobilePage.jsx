@@ -48,7 +48,7 @@ export default function MobilePage() {
 						</List>
 					</MainListItem>
 					<MainListItem>
-						<Subtitle>{translation.header.title1}</Subtitle>
+						<Subtitle>{translation.header.title2}</Subtitle>
 						<List>
 							<ListItem>
 								<IconWrapper>

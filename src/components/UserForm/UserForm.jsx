@@ -1,4 +1,4 @@
-import userInput from 'components/UserFormItem';
+import UserInput from 'components/UserFormItem';
 import { Formik, Form } from 'formik';
 import {
 	Page,
@@ -27,8 +27,10 @@ export default function UserForm({
 					validationSchema={validationSchema}
 				>
 					<Form>
-						{Object.keys(initialValues).map(key =>
-							userInput({ name: key, formType })
+						{Object.keys(initialValues).map(key =>(
+							<UserInput key={key} name={ key} formType={formType} />
+							// userInput({ name: key, formType }
+							)
 						)}
 						<Button type="submit" aria-label="Send form button">
 							{formType}
